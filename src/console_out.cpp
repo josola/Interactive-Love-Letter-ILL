@@ -78,30 +78,21 @@ void ConsoleOut::PrintPlayerTurn(int output)
     }
 }
 void ConsoleOut::PrintString(string output) { cout << output << '\n'; }
-void ConsoleOut::PrintUpPile(vector<CardController> up_pile)
+void ConsoleOut::PrintDeck(DeckController deck)
 {
     cout << "Up pile:\n";
-    for (CardController iCUtil : up_pile)
+    for (auto iCrdCntlr : deck.Deck())
     {
-        cout << ' ' << iCUtil.Name();
+        cout << ' ' << iCrdCntlr.Name();
     }
     cout << '\n';
 }
-void ConsoleOut::PrintDownPile(vector<CardController> down_pile)
-{
-    cout << "Down pile:\n";
-    for (CardController iCUtil : down_pile)
-    {
-        cout << ' ' << iCUtil.Name();
-    }
-    cout << '\n';
-}
-void ConsoleOut::PrintMultipleWinners(vector<PlayerController> players, int range)
+void ConsoleOut::PrintMultipleWinners(GameController game, int range)
 {
     cout << "There were multiple winners last round.\n";
-    for (PlayerController iPUtil : players)
+    for (auto iPlyrCntlr : game.Players())
     {
-        cout << ' ' << iPUtil.Name();
+        cout << ' ' << iPlyrCntlr.Name();
     }
     cout << " please guess a number between 1 and " << range << '\n';
 }
@@ -109,21 +100,21 @@ void ConsoleOut::PrintClosestGuess(int target, PlayerController player)
 {
     cout << player.Name() << " has the closest guess to target[" << target << "]! They get to go first this round!\n";
 }
-void ConsoleOut::PrintDeckTotal(DeckController deckUtil)
+void ConsoleOut::PrintDeckTotal(DeckController deck)
 {
-    int size = deckUtil.Deck().size();
+    int size = deck.Deck().size();
     cout << "Total cards in deck: " << size << '\n';
 }
-void ConsoleOut::PrintRivalPlayers(GameController gameUtil)
+void ConsoleOut::PrintRivalPlayers(GameController game)
 {
-    if (gameUtil.PCount() == 2)
+    if (game.PCount() == 2)
     {
         cout << "Rival player: \n";
-        for (PlayerController iPUtil : gameUtil.Players())
+        for (auto iPlyrCntlr : game.Players())
         {
-            if (!iPUtil.Current())
+            if (!iPlyrCntlr.Current())
             {
-                cout << ' ' << iPUtil.Name();
+                cout << ' ' << iPlyrCntlr.Name();
             }
         }
         cout << '\n';
@@ -131,22 +122,22 @@ void ConsoleOut::PrintRivalPlayers(GameController gameUtil)
     else
     {
         cout << "Rival players: \n";
-        for (PlayerController iPUtil : gameUtil.Players())
+        for (auto iPlyrCntlr : game.Players())
         {
-            if (!iPUtil.Current())
+            if (!iPlyrCntlr.Current())
             {
-                cout << ' ' << iPUtil.Name();
+                cout << ' ' << iPlyrCntlr.Name();
             }
         }
         cout << '\n';
     }
 }
-void ConsoleOut::PrintRivalsWithSpy(GameController gameUtil)
+void ConsoleOut::PrintRivalsWithSpy(GameController controller)
 {
     int spy_count(0);
-    for (PlayerController iPUtil : gameUtil.Players())
+    for (auto iPlyrCntlr : controller.Players())
     {
-        if (iPUtil.Spy())
+        if (iPlyrCntlr.Spy())
         {
             spy_count++;
         }
@@ -154,11 +145,11 @@ void ConsoleOut::PrintRivalsWithSpy(GameController gameUtil)
     if (spy_count > 0)
     {
         cout << "Rivals with Spy: \n";
-        for (PlayerController iPUtil : gameUtil.Players())
+        for (auto iPlyrCntlr : controller.Players())
         {
-            if (iPUtil.Spy())
+            if (iPlyrCntlr.Spy())
             {
-                cout << ' ' << iPUtil.Name();
+                cout << ' ' << iPlyrCntlr.Name();
             }
         }
         cout << '\n';
@@ -167,9 +158,9 @@ void ConsoleOut::PrintRivalsWithSpy(GameController gameUtil)
 void ConsoleOut::PrintPlayerHand(vector<CardController> hand)
 {
     cout << "Player hand: \n";
-    for (CardController iCCNTLR : hand)
+    for (auto iCrdCntlr : hand)
     {
-        cout << ' ' << iCCNTLR.Name();
+        cout << ' ' << iCrdCntlr.Name();
     }
     cout << '\n';
 }
