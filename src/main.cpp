@@ -42,9 +42,9 @@ int main()
 
         while (begin_round && !game_over)
         {
-            for (PlayerController iPCNTLR : gameController.Players())
+            for (auto iPlyrCntlr : gameController.Players())
             {
-                if (iPCNTLR.Tokens() > gameController.WinningTokenCount())
+                if (iPlyrCntlr.Tokens() > gameController.WinningTokenCount())
                 {
                     game_over = true;
                     begin_round = false;
@@ -79,7 +79,7 @@ int main()
                 ConsoleOut::PrintDeckTotal(deckController);
                 if (!upController.Deck().empty())
                 {
-                    ConsoleOut::PrintUpPile(upController.Deck());
+                    ConsoleOut::PrintDeck(upController);
                 }
                 ConsoleOut::PrintRivalPlayers(gameController);
                 ConsoleOut::PrintRivalsWithSpy(gameController);

@@ -24,67 +24,67 @@ CardController CardController::Builder(int input)
     {
     case 0:
     {
-        CardController spyUtil("SPY[0]", 0);
-        return spyUtil;
+        CardController spyController("SPY[0]", 0);
+        return spyController;
         break;
     }
     case 1:
     {
-        CardController guardUtil("GUARD[1]", 1);
-        return guardUtil;
+        CardController guardController("GUARD[1]", 1);
+        return guardController;
         break;
     }
     case 2:
     {
-        CardController priestUtil("PRIEST[2]", 2);
-        return priestUtil;
+        CardController priestController("PRIEST[2]", 2);
+        return priestController;
         break;
     }
     case 3:
     {
-        CardController baronUtil("BARON[3]", 3);
-        return baronUtil;
+        CardController baronController("BARON[3]", 3);
+        return baronController;
         break;
     }
     case 4:
     {
-        CardController handmaidUtil("HANDMAID[4]", 4);
-        return handmaidUtil;
+        CardController handmaidController("HANDMAID[4]", 4);
+        return handmaidController;
         break;
     }
     case 5:
     {
-        CardController princeUtil("PRINCE[5]", 5);
-        return princeUtil;
+        CardController princeController("PRINCE[5]", 5);
+        return princeController;
         break;
     }
     case 6:
     {
-        CardController chancellorUtil("CHANCELLOR[6]", 6);
-        return chancellorUtil;
+        CardController chancellorController("CHANCELLOR[6]", 6);
+        return chancellorController;
         break;
     }
     case 7:
     {
-        CardController kingUtil("KING[7]", 7);
-        return kingUtil;
+        CardController kingController("KING[7]", 7);
+        return kingController;
         break;
     }
     case 8:
     {
-        CardController countessUtil("COUNTESS[8]", 8);
-        return countessUtil;
+        CardController countessController("COUNTESS[8]", 8);
+        return countessController;
         break;
     }
     case 9:
     {
-        CardController princessUtil("PRINCESS[9]", 9);
-        return princessUtil;
+        CardController princessController("PRINCESS[9]", 9);
+        return princessController;
         break;
     }
     default:
-        CardController ghostUtil("", 10);
-        return ghostUtil;
+        CardController ghostController("", 10);
+        return ghostController;
         break;
     }
 }
