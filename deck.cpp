@@ -28,7 +28,7 @@ void DeckInterface::InsertCard(CardController card) { deck.push_back(card); }
 //actions
 void DeckInterface::Shuffle()
 {
-    srand(time(NULL));
+    srand(static_cast<unsigned int>(time(NULL)));
     random_shuffle(deck.begin(), deck.end());
 }
 void DeckInterface::RemoveCard(int pos) { deck.erase(deck.begin() + pos); }

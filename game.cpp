@@ -233,7 +233,7 @@ void GameController::BuildStartingPlyr()
 }
 int GameController::GenerateNumberWithinRange(int range)
 {
-    srand(time(NULL));
+    srand(static_cast<unsigned int>(time(NULL)));
     int output(rand() % range + 1);
     return output;
 }
