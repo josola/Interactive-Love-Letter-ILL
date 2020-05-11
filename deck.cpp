@@ -35,41 +35,41 @@ void DeckInterface::RemoveCard(int pos) { deck.erase(deck.begin() + pos); }
 
 
 //builds deck
-//void DeckController::Builder()
-//{
-//    CardController cardController("", 10);
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(0));
-//    }
-//    for (int i = 0; i < 6; i++)
-//    {
-//        InsertCard(cardController.Builder(1));
-//    }
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(2));
-//    }
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(3));
-//    }
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(4));
-//    }
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(5));
-//    }
-//    for (int i = 0; i < 2; i++)
-//    {
-//        InsertCard(cardController.Builder(6));
-//    }
-//    InsertCard(cardController.Builder(7));
-//    InsertCard(cardController.Builder(8));
-//    InsertCard(cardController.Builder(9));
-//}
+void DeckController::Builder()
+{
+    CardController cardController("", 10);
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(0));
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        InsertCard(cardController.Builder(1));
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(2));
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(3));
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(4));
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(5));
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        InsertCard(cardController.Builder(6));
+    }
+    InsertCard(cardController.Builder(7));
+    InsertCard(cardController.Builder(8));
+    InsertCard(cardController.Builder(9));
+}
 
 //builds up pile (for 2 player games)
 void UpController::Builder(DeckController deck)

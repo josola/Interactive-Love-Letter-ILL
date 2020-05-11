@@ -40,7 +40,7 @@ class DeckController : virtual public DeckInterface
 public:
     DeckController() : DeckInterface{} {};
 
-    //virtual void Builder();
+    virtual void Builder();
 };
 
 class UpController : virtual public DeckController

@@ -57,7 +57,7 @@ int main()
             ConsoleOut::PrintRound(gameController.Round());
             ConsoleOut::PrintPlayerTurn(gameController.PCurrent().Value());
 
-            //deckController.Builder();
+            deckController.Builder();
             deckController.Shuffle();
 
             downController.InsertCard(deckController.Card(0));
