@@ -6,8 +6,8 @@
 
 #include <random>
 #include <ctime>
-#include <iterator>
 #include <algorithm>
+#include <iterator>
 #include "game.h"
 #include "console_in.h"
 #include "console_out.h"
@@ -36,11 +36,11 @@ PlayerController GameInterface::PCurrent()
 int GameInterface::FindWinner()
 {
     int index(0);
-    for (int i = 0; i < players.size(); i++)
+    for (auto i : players)
     {
-        if (players.at(i).Winner())
+        if (i.Winner())
         {
-            index = i;
+            index = i.Value() - 1;
         }
     }
     return index;
