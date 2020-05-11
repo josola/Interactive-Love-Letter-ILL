@@ -29,6 +29,7 @@ void PlayerInterface::IsPlaying() { playing = true; }
 void PlayerInterface::NotPlaying() { playing = false; }
 void PlayerInterface::HasHandmaid() { handmaid = true; }
 void PlayerInterface::NoHandmaid() { handmaid = false; }
+void PlayerInterface::SetSpy(bool output) { spy = output; }
 
 //actions
 CardController PlayerController::DrawCard(DeckController &deck)

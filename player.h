@@ -58,6 +58,7 @@ public:
     void NotPlaying();
     void HasHandmaid();
     void NoHandmaid();
+    void SetSpy(bool output);
 };
 
 class PlayerController : public PlayerInterface
