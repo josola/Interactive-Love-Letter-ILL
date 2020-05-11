@@ -5,3 +5,8 @@
 using std::string;
 
 Spy::Spy(string name, int value) : CardInterface{ name, value } {};
+
+void Spy::Action(PlayerController& player)
+{
+
+}

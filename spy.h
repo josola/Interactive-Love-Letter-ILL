@@ -9,11 +9,14 @@
 #define SPY_h
 
 #include "card.h"
+#include "player.h"
 
 class Spy : public CardInterface
 {
 public:
     Spy(string name, int value);
+
+    void Action(PlayerController &player);
 };
 
 #endif // !SPY_h
