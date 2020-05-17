@@ -34,7 +34,7 @@ void PlayerInterface::SetSpy(bool output) { spy = output; }
 //actions
 CardController PlayerController::DrawCard(DeckController &deck)
 {
-    CardController top_card = deck.Card(0);
+    CardController top_card = deck.GetCard(0);
     return top_card;
 }
 void PlayerController::InsertCardIntoHand(CardController card) { hand.push_back(card); }

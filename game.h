@@ -26,15 +26,13 @@ protected:
 class GameInterface : public GameModel
 {
 public:
-    GameInterface() : GameModel{} {};
-
     //getters
-    const int PCount();
+    const int PlayerCount();
     const int Round();
     const int OPCount();
     const int WinningTokenCount();
     vector<PlayerController> Players();
-    PlayerController PCurrent();
+    PlayerController PlayerCurrent();
     int FindWinner();
 
     //setters
@@ -42,20 +40,18 @@ public:
     void SetOPCount(int input);
     void SetPlyrs(vector<PlayerController> input);
     void SetWinningTokenCount(int input);
-    void SetStrtngPlyr(int output);
+    void SetStartingPlayer(int output);
 };
 
 class GameController : public GameInterface
 {
 public:
-    GameController() : GameInterface{} {};
-
     void BuildPCount();
     void BuildPContainer();
     bool PCountCorrect(int input);
     void FixPCount();
     void BuildWinningTokenCount();
-    void BuildStartingPlyr();
+    void BuildStartingPlayer();
     int GenerateNumberWithinRange(int range);
     int GetPlayerGuess();
     bool CorrectGuessInput(int output);
@@ -64,7 +60,7 @@ public:
     void DealStartingHand(DeckController &deck);
     void ClearWinner();
     void ClearPlaying();
-    void ProcessDraw(DeckController &deck);
+    void ProcessDraw(DeckInterface &deck);
     char DrawInput();
     bool CorrectDrawInput(char input);
     char FixDrawInput();

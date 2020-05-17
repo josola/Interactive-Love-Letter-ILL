@@ -8,19 +8,20 @@
 
 /* Card Interface */
 
-//getters
-string CardInterface::Name() { return name; }
-int CardInterface::Value() { return value; }
+Card::Card(const string name, const int value) : name_(name), value_(value) {};
 
-//setters
-void CardInterface::SetName(string input) { name = input; }
-void CardInterface::SetValue(int input) { value = input; }
+string Card::GetName() { return name_; }
+int Card::GetValue() { return value_; }
 
 /* Card Controller */
 
-CardController CardController::Builder(int input)
+//constructor
+CardController::CardController(const string name, const int value) : Card{ name, value } {};
+
+//method(s)
+CardController CardController::Builder(const int output)
 {
-    switch (input)
+    switch (output)
     {
     case 0:
     {
@@ -83,8 +84,13 @@ CardController CardController::Builder(int input)
         break;
     }
     default:
-        CardController ghostController("", 10);
+        CardController ghostController("SHOULD NOT EXIST", -10);
         return ghostController;
         break;
     }
+}
+
+void CardController::Action()
+{
+
 }

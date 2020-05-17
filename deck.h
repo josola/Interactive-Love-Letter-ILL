@@ -15,17 +15,15 @@ using std::vector;
 class DeckModel
 {
 protected:
-    vector<CardController> deck;
+    vector<CardController> deck_;
 };
 
 class DeckInterface : public DeckModel
 {
 public:
-    DeckInterface() : DeckModel{} {};
-
     //getters
-    vector<CardController> Deck();
-    CardController Card(int pos);
+    vector<CardController> GetDeck();
+    CardController GetCard(int pos);
 
     //setters
     void InsertCard(CardController card);
@@ -35,26 +33,20 @@ public:
     void RemoveCard(int pos);
 };
 
-class DeckController : virtual public DeckInterface
+class DeckController : public DeckInterface
 {
 public:
-    DeckController() : DeckInterface{} {};
-
-    virtual void Builder();
+    void Builder();
 };
 
-class UpController : virtual public DeckController
+class UpController : public DeckInterface
 {
 public:
-    UpController() : DeckInterface{} {};
-
-    virtual void Builder(DeckController deck);
+    void Builder(DeckController deck);
 };
 
-class DownController : virtual public DeckController
+class DownController : public DeckInterface
 {
-public:
-    DownController() : DeckInterface{} {};
 };
 
 #endif

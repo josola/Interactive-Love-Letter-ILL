@@ -78,12 +78,12 @@ void ConsoleOut::PrintPlayerTurn(int output)
     }
 }
 void ConsoleOut::PrintString(string output) { cout << output << '\n'; }
-void ConsoleOut::PrintDeck(DeckController deck)
+void ConsoleOut::PrintDeck(DeckInterface deck)
 {
     cout << "Up pile:\n";
-    for (auto iCrdCntlr : deck.Deck())
+    for (auto iCrdCntlr : deck.GetDeck())
     {
-        cout << ' ' << iCrdCntlr.Name();
+        cout << ' ' << iCrdCntlr.GetName();
     }
     cout << '\n';
 }
@@ -102,12 +102,12 @@ void ConsoleOut::PrintClosestGuess(int target, PlayerController player)
 }
 void ConsoleOut::PrintDeckTotal(DeckController deck)
 {
-    int size = deck.Deck().size();
+    size_t size = deck.GetDeck().size();
     cout << "Total cards in deck: " << size << '\n';
 }
-void ConsoleOut::PrintRivalPlayers(GameController game)
+void ConsoleOut::PrintRivalPlayer(GameController game)
 {
-    if (game.PCount() == 2)
+    if (game.PlayerCount() == 2)
     {
         cout << "Rival player: \n";
         for (auto iPlyrCntlr : game.Players())
@@ -132,7 +132,7 @@ void ConsoleOut::PrintRivalPlayers(GameController game)
         cout << '\n';
     }
 }
-void ConsoleOut::PrintRivalsWithSpy(GameController controller)
+void ConsoleOut::PrintRivalWithSpy(GameController controller)
 {
     int spy_count(0);
     for (auto iPlyrCntlr : controller.Players())
@@ -160,7 +160,7 @@ void ConsoleOut::PrintPlayerHand(vector<CardController> hand)
     cout << "Player hand: \n";
     for (auto iCrdCntlr : hand)
     {
-        cout << ' ' << iCrdCntlr.Name();
+        cout << ' ' << iCrdCntlr.GetName();
     }
     cout << '\n';
 }

@@ -4,7 +4,7 @@
 
 using std::string;
 
-Spy::Spy(string name, int value) : CardInterface{ name, value } {};
+Spy::Spy(const string name, const int value) : Card{ name, value } {};
 
 void Spy::Action(PlayerController& player)
 {

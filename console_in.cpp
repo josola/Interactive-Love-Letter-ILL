@@ -29,7 +29,7 @@ int ConsoleIn::GetIntInput()
         return input;
     }
 }
-bool ConsoleIn::CorrectIntInput(int input)
+bool ConsoleIn::CorrectIntInput(const int& /*input*/)
 {
     if (!cin)
     {
@@ -71,7 +71,7 @@ char ConsoleIn::GatCharInput()
     }
     return output;
 }
-bool ConsoleIn::CorrectCharInput(char input)
+bool ConsoleIn::CorrectCharInput(const char& /*input*/)
 {
     if (!cin)
     {
@@ -86,7 +86,7 @@ bool ConsoleIn::CorrectCharInput(char input)
 char ConsoleIn::FixCharInput()
 {
     bool correct = false;
-    char fixed;
+    char fixed = ' ';
     while (!correct)
     {
         ClearInput();

@@ -16,12 +16,12 @@ using std::any_of;
 using std::distance;
 using std::find;
 
-const int GameInterface::PCount() { return player_count; }
+const int GameInterface::PlayerCount() { return player_count; }
 const int GameInterface::Round() { return round_count; }
 const int GameInterface::OPCount() { return original_player_count; }
 const int GameInterface::WinningTokenCount() { return winning_token_count; }
 vector<PlayerController> GameInterface::Players() { return players; }
-PlayerController GameInterface::PCurrent()
+PlayerController GameInterface::PlayerCurrent()
 {
     PlayerController PlayerUtl;
     for (PlayerController &iPUtil : players)
@@ -49,7 +49,7 @@ void GameInterface::SetPCount(int input) { player_count = input; }
 void GameInterface::SetOPCount(int input) { original_player_count = input; }
 void GameInterface::SetPlyrs(vector<PlayerController> input) { players = input; }
 void GameInterface::SetWinningTokenCount(int input) { winning_token_count = input; }
-void GameInterface::SetStrtngPlyr(int output)
+void GameInterface::SetStartingPlayer(int output)
 {
     output--;
     switch (output)
@@ -204,7 +204,7 @@ void GameController::BuildWinningTokenCount()
         break;
     }
 }
-void GameController::BuildStartingPlyr()
+void GameController::BuildStartingPlayer()
 {
     int target(GenerateNumberWithinRange(player_count));
     vector<int> duplicate_guess{};
@@ -229,7 +229,7 @@ void GameController::BuildStartingPlyr()
             duplicate_guess.push_back(guess);
         }
     }
-    SetStrtngPlyr(player);
+    SetStartingPlayer(player);
 }
 int GameController::GenerateNumberWithinRange(int range)
 {
@@ -279,7 +279,7 @@ void GameController::DealStartingHand(DeckController& deck)
 {
     for (PlayerController& iPUtl : players)
     {
-        iPUtl.InsertCardIntoHand(deck.Card(0));
+        iPUtl.InsertCardIntoHand(deck.GetCard(0));
     }
 }
 void GameController::ClearWinner()
@@ -296,7 +296,7 @@ void GameController::ClearPlaying()
         iPCNTLR.IsPlaying();
     }
 }
-void GameController::ProcessDraw(DeckController& deck)
+void GameController::ProcessDraw(DeckInterface& deck)
 {
     char input = DrawInput();
     if (!CorrectDrawInput(input))
@@ -309,7 +309,7 @@ void GameController::ProcessDraw(DeckController& deck)
         {
             if (iPUtil.Current())
             {
-                iPUtil.InsertCardIntoHand(deck.Card(0));
+                iPUtil.InsertCardIntoHand(deck.GetCard(0));
             }
         }
     }
@@ -330,7 +330,7 @@ bool GameController::CorrectDrawInput(char input)
 char GameController::FixDrawInput()
 {
     ConsoleIn::ClearInput();
-    char output;
+    char output = ' ';
     bool correct = false;
     while (!correct)
     {
@@ -356,8 +356,8 @@ int GameController::ProcessCardChoice()
     bool in_hand = false;
     while (!in_hand)
     {
-        vector<CardController> hand = PCurrent().Hand();
-        if (any_of(hand.begin(), hand.end(), [choice](CardController iCUtil){ return iCUtil.Value() == choice; }))
+        vector<CardController> hand = PlayerCurrent().Hand();
+        if (any_of(hand.begin(), hand.end(), [choice](CardController iCUtil){ return iCUtil.GetValue() == choice; }))
         {
             in_hand = true;
         }

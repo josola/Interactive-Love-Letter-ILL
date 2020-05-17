@@ -11,10 +11,10 @@
 #include "card.h"
 #include "player.h"
 
-class Spy : public CardInterface
+class Spy : public Card
 {
 public:
-    Spy(string name, int value);
+    Spy(const string name, const int value);
 
     void Action(PlayerController &player);
 };

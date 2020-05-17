@@ -30,12 +30,12 @@ public:
     static void PrintRound(int output);
     static void PrintPlayerTurn(int output);
     static void PrintString(string output);
-    static void PrintDeck(DeckController deck);
+    static void PrintDeck(DeckInterface deck);
     static void PrintMultipleWinners(GameController game, int range);
     static void PrintClosestGuess(int target, PlayerController player);
     static void PrintDeckTotal(DeckController deckUtil);
-    static void PrintRivalPlayers(GameController controller);
-    static void PrintRivalsWithSpy(GameController controller);
+    static void PrintRivalPlayer(GameController controller);
+    static void PrintRivalWithSpy(GameController controller);
     static void PrintPlayerHand(vector<CardController> hand);
     static void PrintDrawPrompt(const string name);
     static void PrintCardChoicePrompt(PlayerController playerUtil);

@@ -35,34 +35,34 @@ int main()
             gameController.BuildPCount();
             gameController.BuildPContainer();
             gameController.BuildWinningTokenCount();
-            ConsoleOut::PrintPlayerGuessPrompt(gameController.PCount());
-            gameController.BuildStartingPlyr();
+            ConsoleOut::PrintPlayerGuessPrompt(gameController.PlayerCount());
+            gameController.BuildStartingPlayer();
             initial_setup = false;
         }
 
         while (begin_round && !game_over)
         {
-            for (auto iPlyrCntlr : gameController.Players())
+            for (auto iPCntlr : gameController.Players())
             {
-                if (iPlyrCntlr.Tokens() > gameController.WinningTokenCount())
+                if (iPCntlr.Tokens() > gameController.WinningTokenCount())
                 {
                     game_over = true;
                     begin_round = false;
                     break;
                 }
             }
-            gameController.SetStrtngPlyr(gameController.FindWinner());
+            gameController.SetStartingPlayer(gameController.FindWinner());
             gameController.ClearWinner();
             gameController.ClearPlaying();
             ConsoleOut::PrintRound(gameController.Round());
-            ConsoleOut::PrintPlayerTurn(gameController.PCurrent().Value());
+            ConsoleOut::PrintPlayerTurn(gameController.PlayerCurrent().Value());
 
             deckController.Builder();
             deckController.Shuffle();
 
-            downController.InsertCard(deckController.Card(0));
+            downController.InsertCard(deckController.GetCard(0));
 
-            if (gameController.PCount() == 2)
+            if (gameController.PlayerCount() == 2)
             {
                 upController.Builder(deckController);
             }
@@ -73,19 +73,19 @@ int main()
 
         while (player_turn && !game_over)
         {
-            gameController.PCurrent().NoHandmaid();
-            if (!deckController.Deck().empty())
+            gameController.PlayerCurrent().NoHandmaid();
+            if (!deckController.GetDeck().empty())
             {
                 ConsoleOut::PrintDeckTotal(deckController);
-                if (!upController.Deck().empty())
+                if (!upController.GetDeck().empty())
                 {
                     ConsoleOut::PrintDeck(upController);
                 }
-                ConsoleOut::PrintRivalPlayers(gameController);
-                ConsoleOut::PrintRivalsWithSpy(gameController);
-                ConsoleOut::PrintPlayerHand(gameController.PCurrent().Hand());
-                ConsoleOut::PrintDrawPrompt(gameController.PCurrent().Name());
-                if (deckController.Deck().empty())
+                ConsoleOut::PrintRivalPlayer(gameController);
+                ConsoleOut::PrintRivalWithSpy(gameController);
+                ConsoleOut::PrintPlayerHand(gameController.PlayerCurrent().Hand());
+                ConsoleOut::PrintDrawPrompt(gameController.PlayerCurrent().Name());
+                if (deckController.GetDeck().empty())
                 {
                     gameController.ProcessDraw(downController);
                 }
@@ -93,14 +93,15 @@ int main()
                 {
                     gameController.ProcessDraw(deckController);
                 }
-                ConsoleOut::PrintPlayerHand(gameController.PCurrent().Hand());
+                ConsoleOut::PrintPlayerHand(gameController.PlayerCurrent().Hand());
             }
             else
             {
                 break;
             }
-            ConsoleOut::PrintCardChoicePrompt(gameController.PCurrent());
-            int card_choice = gameController.ProcessCardChoice();
+            ConsoleOut::PrintCardChoicePrompt(gameController.PlayerCurrent());
+            int card_choice = 0;
+            card_choice = gameController.ProcessCardChoice();
             player_turn = false;
         }
     }
