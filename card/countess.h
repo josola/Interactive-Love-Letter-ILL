@@ -12,15 +12,17 @@
 class Countess : public Card
 {
 public:
-	Countess();
+	Countess(const string name, const int value);
 	~Countess();
 
 private:
 
 };
 
-Countess::Countess()
+Countess::Countess(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 Countess::~Countess()

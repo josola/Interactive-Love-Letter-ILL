@@ -12,15 +12,17 @@
 class Guard : public Card
 {
 public:
-	Guard();
+	Guard(const string name, const int value);
 	~Guard();
 
 private:
 
 };
 
-Guard::Guard()
+Guard::Guard(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 Guard::~Guard()

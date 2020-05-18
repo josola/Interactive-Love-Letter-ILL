@@ -11,13 +11,15 @@
 
 using std::string;
 
-class Card
+struct Card
 {
 public:
-    Card(const string name = "DEFAULT CARD", const int value = -1);
-
     string GetName();
     int GetValue();
+
+    void SetName(const string name);
+    void SetValue(const int value);
+
     virtual void Action() = 0;
 
 private:
@@ -25,13 +27,4 @@ private:
     int value_ = 0;
 };
 
-class CardController : public Card
-{
-public:
-    CardController(const string name, const int value);
-
-    CardController Builder(const int output);
-    void Action();
-};
-
-#endif
+#endif // !CARD_h

@@ -12,15 +12,17 @@
 class King : public Card
 {
 public:
-	King();
+	King(const string name, const int value);
 	~King();
 
 private:
 
 };
 
-King::King()
+King::King(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 King::~King()

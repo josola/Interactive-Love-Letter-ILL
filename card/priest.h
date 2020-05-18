@@ -12,15 +12,17 @@
 class Priest : public Card
 {
 public:
-	Priest();
+	Priest(const string name, const int value);
 	~Priest();
 
 private:
 
 };
 
-Priest::Priest()
+Priest::Priest(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 Priest::~Priest()

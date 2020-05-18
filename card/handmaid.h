@@ -12,15 +12,17 @@
 class Handmaid : public Card
 {
 public:
-	Handmaid();
+	Handmaid(const string name, const int value);
 	~Handmaid();
 
 private:
 
 };
 
-Handmaid::Handmaid()
+Handmaid::Handmaid(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 Handmaid::~Handmaid()

@@ -12,15 +12,17 @@
 class Chancellor : public Card
 {
 public:
-	Chancellor();
+	Chancellor(const string name, const int value);
 	~Chancellor();
 
 private:
 
 };
 
-Chancellor::Chancellor()
+Chancellor::Chancellor(const string name, const int value) : Card{}
 {
+    SetName(name);
+    SetValue(value);
 }
 
 Chancellor::~Chancellor()
