@@ -14,13 +14,11 @@ using std::string;
 struct Card
 {
 public:
-    string GetName();
-    int GetValue();
+    const string GetName();
+    const int GetValue();
 
     void SetName(const string name);
     void SetValue(const int value);
-
-    virtual void Action() = 0;
 
 private:
     string name_ = " ";

@@ -8,74 +8,67 @@
 #include <ctime>
 #include <algorithm>
 #include "deck.h"
+#include "suits.h"
 
 using std::random_shuffle;
 using std::srand;
 using std::time;
 
 //getters
-vector<CardController> DeckInterface::GetDeck() { return deck_; }
-CardController DeckInterface::GetCard(int pos)
-{
-    CardController card = deck_.at(pos);
-    RemoveCard(pos);
-    return card;
+const vector<Card> Deck::GetDeck() {
+    return deck_;
+}
+const Card Deck::GetCard(int pos) {
+    return deck_.at(pos);
 }
 
 //setters
-void DeckInterface::InsertCard(CardController card) { deck_.push_back(card); }
+void Deck::InsertCard(const Card card) {
+    deck_.push_back(card);
+}
 
 //actions
-void DeckInterface::Shuffle()
-{
+void Deck::Shuffle() {
     srand(static_cast<unsigned int>(time(NULL)));
     random_shuffle(deck_.begin(), deck_.end());
 }
-void DeckInterface::RemoveCard(int pos) { deck_.erase(deck_.begin() + pos); }
+void Deck::RemoveCard(int pos) {
+    deck_.erase(deck_.begin() + pos);
+}
 
 
 //builds deck
-void DeckController::Builder()
-{
-    CardController cardController("", 10);
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(0));
+void DeckController::Builder() {
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Spy("SPY[0}", 0));
     }
-    for (int i = 0; i < 6; i++)
-    {
-        InsertCard(cardController.Builder(1));
+    for (int i = 0; i < 6; i++) {
+        InsertCard(Guard("GUARD[1]", 1));
     }
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(2));
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Priest("PRIEST[2]", 2));
     }
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(3));
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Baron("BARON[3]", 3));
     }
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(4));
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Handmaid("HANDMAID[4]", 4));
     }
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(5));
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Prince("PRINCE[5]", 5));
     }
-    for (int i = 0; i < 2; i++)
-    {
-        InsertCard(cardController.Builder(6));
+    for (int i = 0; i < 2; i++) {
+        InsertCard(Chancellor("CHANCELLOR[6]", 6));
     }
-    InsertCard(cardController.Builder(7));
-    InsertCard(cardController.Builder(8));
-    InsertCard(cardController.Builder(9));
+    InsertCard(King("KING[7]", 7));
+    InsertCard(Countess("COUNTESS[8]", 8));
+    InsertCard(Princess("PRINCESS[9]", 9));
 }
 
 //builds up pile (for 2 player games)
-void UpController::Builder(DeckController deck)
-{
-    for (int i = 0; i < 3; i++)
-    {
+void UpPile::Builder(DeckController deck) {
+    for (int i = 0; i < 3; i++) {
         InsertCard(deck.GetCard(0));
+        RemoveCard(0);
     }
 }

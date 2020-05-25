@@ -13,86 +13,68 @@ using std::cin;
 using std::numeric_limits;
 using std::streamsize;
 
-int ConsoleIn::GetIntInput()
-{
+int ConsoleIn::GetIntInput() {
     int input;
     cin >> input;
 
-    if (!CorrectIntInput(input))
-    {
+    if (!CorrectIntInput(input)) {
         int fixed = 0;
         fixed = FixIntInput();
         return fixed;
     }
-    else
-    {
+    else {
         return input;
     }
 }
-bool ConsoleIn::CorrectIntInput(const int& /*input*/)
-{
-    if (!cin)
-    {
+bool ConsoleIn::CorrectIntInput(const int /*input*/) {
+    if (!cin) {
         ConsoleOut::PrintInvalidInput(0);
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
-int ConsoleIn::FixIntInput()
-{
+int ConsoleIn::FixIntInput() {
     bool correct = false;
     int fixed = 0;
-    while (!correct)
-    {
+    while (!correct) {
         ClearInput();
         cin >> fixed;
-        if (cin)
-        {
+        if (cin) {
             correct = true;
         }
     }
     return fixed;
 }
-void ConsoleIn::ClearInput()
-{
+void ConsoleIn::ClearInput() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-char ConsoleIn::GatCharInput()
-{
+char ConsoleIn::GatCharInput() {
     char output;
     cin >> output;
-    if (!CorrectCharInput(output))
-    {
+    if (!CorrectCharInput(output)) {
         output = FixCharInput();
     }
     return output;
 }
-bool ConsoleIn::CorrectCharInput(const char& /*input*/)
-{
-    if (!cin)
-    {
+bool ConsoleIn::CorrectCharInput(const char /*input*/) {
+    if (!cin) {
         ConsoleOut::PrintInvalidInput(6);
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
-char ConsoleIn::FixCharInput()
-{
+char ConsoleIn::FixCharInput() {
     bool correct = false;
     char fixed = ' ';
-    while (!correct)
-    {
+    while (!correct) {
         ClearInput();
         cin >> fixed;
-        if (cin)
-        {
+        if (cin) {
             correct = true;
         }
     }

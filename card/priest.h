@@ -13,20 +13,11 @@ class Priest : public Card
 {
 public:
 	Priest(const string name, const int value);
-	~Priest();
+
+    void Action();
 
 private:
 
 };
-
-Priest::Priest(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Priest::~Priest()
-{
-}
 
 #endif // !PRIEST_h

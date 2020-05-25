@@ -13,20 +13,11 @@ class Handmaid : public Card
 {
 public:
 	Handmaid(const string name, const int value);
-	~Handmaid();
+
+    void Action();
 
 private:
 
 };
-
-Handmaid::Handmaid(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Handmaid::~Handmaid()
-{
-}
 
 #endif // !HANDMAID_h

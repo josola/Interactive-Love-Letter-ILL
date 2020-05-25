@@ -4,6 +4,7 @@
  * Written by Jordan Sola 2019-2020
  */
 
+#include <iostream>
 #include "console_out.h"
 #include "console_in.h"
 #include "game.h"
@@ -18,90 +19,91 @@ int main()
 
     while (!game_over)
     {
-        GameController gameController;
-        DeckController deckController;
-        DownController downController;
-        UpController upController;
+        GameController game;
+        DeckController deck;
+        DownPile downPile;
+        UpPile upPile;
 
         while (initial_setup && !game_over)
         {
-            if (gameController.Round() > 1 || game_over)
+            if (game.Round() > 1 || game_over)
             {
                 initial_setup = false;
                 break;
             }
             ConsoleOut::PrintWelcome();
             ConsoleOut::PrintStartingPlayerPrompt();
-            gameController.BuildPCount();
-            gameController.BuildPContainer();
-            gameController.BuildWinningTokenCount();
-            ConsoleOut::PrintPlayerGuessPrompt(gameController.PlayerCount());
-            gameController.BuildStartingPlayer();
+            game.BuildPlayerCount();
+            game.BuildPlayerContainer();
+            game.BuildWinningTokenCount();
+            ConsoleOut::PrintPlayerGuessPrompt(game.PlayerCount());
+            game.BuildStartingPlayer();
             initial_setup = false;
         }
 
         while (begin_round && !game_over)
         {
-            for (auto iPCntlr : gameController.Players())
+            for (auto iPCntlr : game.Players())
             {
-                if (iPCntlr.Tokens() > gameController.WinningTokenCount())
+                if (iPCntlr.Tokens() > game.WinningTokenCount())
                 {
                     game_over = true;
                     begin_round = false;
                     break;
                 }
             }
-            gameController.SetStartingPlayer(gameController.FindWinner());
-            gameController.ClearWinner();
-            gameController.ClearPlaying();
-            ConsoleOut::PrintRound(gameController.Round());
-            ConsoleOut::PrintPlayerTurn(gameController.PlayerCurrent().Value());
+            game.SetStartingPlayer(game.FindWinner());
+            game.ClearWinner();
+            game.ClearPlaying();
+            ConsoleOut::PrintRound(game.Round());
+            ConsoleOut::PrintPlayerTurn(game.CurrentPlayer()->Value());
 
-            deckController.Builder();
-            deckController.Shuffle();
+            deck.Builder();
+            deck.Shuffle();
 
-            downController.InsertCard(deckController.GetCard(0));
+            downPile.InsertCard(deck.GetCard(0));
+            deck.RemoveCard(0);
 
-            if (gameController.PlayerCount() == 2)
+            if (game.PlayerCount() == 2)
             {
-                upController.Builder(deckController);
+                upPile.Builder(deck);
             }
 
-            gameController.DealStartingHand(deckController);
+            game.DealStartingHand(deck);
             begin_round = false;
         }
 
         while (player_turn && !game_over)
         {
-            gameController.PlayerCurrent().NoHandmaid();
-            if (!deckController.GetDeck().empty())
+            game.CurrentPlayer()->SetHandmaid(false);
+            if (!deck.GetDeck().empty())
             {
-                ConsoleOut::PrintDeckTotal(deckController);
-                if (!upController.GetDeck().empty())
+                ConsoleOut::PrintDeckTotal(deck);
+                if (!upPile.GetDeck().empty())
                 {
-                    ConsoleOut::PrintDeck(upController);
+                    ConsoleOut::PrintDeck(upPile);
                 }
-                ConsoleOut::PrintRivalPlayer(gameController);
-                ConsoleOut::PrintRivalWithSpy(gameController);
-                ConsoleOut::PrintPlayerHand(gameController.PlayerCurrent().Hand());
-                ConsoleOut::PrintDrawPrompt(gameController.PlayerCurrent().Name());
-                if (deckController.GetDeck().empty())
+                ConsoleOut::PrintRivalPlayer(game);
+                ConsoleOut::PrintRivalWithSpy(game);
+                ConsoleOut::PrintPlayerHand(game.CurrentPlayer()->Hand());
+                ConsoleOut::PrintDrawPrompt(game.CurrentPlayer()->Name());
+                if (deck.GetDeck().empty())
                 {
-                    gameController.ProcessDraw(downController);
+                    game.ProcessDraw(downPile);
                 }
                 else
                 {
-                    gameController.ProcessDraw(deckController);
+                    game.ProcessDraw(deck);
                 }
-                ConsoleOut::PrintPlayerHand(gameController.PlayerCurrent().Hand());
+                ConsoleOut::PrintPlayerHand(game.CurrentPlayer()->Hand());
             }
             else
             {
                 break;
             }
-            ConsoleOut::PrintCardChoicePrompt(gameController.PlayerCurrent());
+            ConsoleOut::PrintCardChoicePrompt(game.CurrentPlayer());
             int card_choice = 0;
-            card_choice = gameController.ProcessCardChoice();
+            card_choice = game.ProcessCardChoice();
             player_turn = false;
         }
     }

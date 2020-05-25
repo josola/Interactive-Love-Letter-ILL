@@ -6,22 +6,16 @@
 
 #include "card.h"
 
-/* Card Interface */
-
-string Card::GetName()
-{
+const string Card::GetName() {
     return name_;
 }
-int Card::GetValue()
-{
+const int Card::GetValue() {
     return value_;
 }
 
-void Card::SetName(const string name)
-{
+void Card::SetName(const string name) {
     name_ = name;
 }
-void Card::SetValue(const int value)
-{
+void Card::SetValue(const int value) {
     value_ = value;
 }

@@ -16,7 +16,10 @@ class Spy : public Card
 public:
     Spy(const string name, const int value);
 
-    void Action(PlayerController &player);
+    void Action(Player& player);
+
+private:
+
 };
 
 #endif // !SPY_h

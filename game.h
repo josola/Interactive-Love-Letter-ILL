@@ -13,43 +13,40 @@
 
 using std::string;
 
-class GameModel
-{
-protected:
-    int player_count = 0;
-    int original_player_count = 0;
-    int round_count = 1;
-    vector<PlayerController> players;
-    int winning_token_count = 0;
-};
-
-class GameInterface : public GameModel
+class Game
 {
 public:
     //getters
     const int PlayerCount();
     const int Round();
-    const int OPCount();
+    const int OriginalPlayerCount();
     const int WinningTokenCount();
-    vector<PlayerController> Players();
-    PlayerController PlayerCurrent();
+    vector<Player> Players();
+    Player* CurrentPlayer();
     int FindWinner();
 
     //setters
-    void SetPCount(int input);
-    void SetOPCount(int input);
-    void SetPlyrs(vector<PlayerController> input);
-    void SetWinningTokenCount(int input);
-    void SetStartingPlayer(int output);
+    void SetPlayerCount(const int value);
+    void SetOriginalPlayerCount(const int value);
+    void SetPlayers(const vector<Player> input);
+    void SetWinningTokenCount(const int value);
+    void SetStartingPlayer(const int value);
+
+private:
+    int player_count_ = 0;
+    int original_player_count_ = 0;
+    int round_count_ = 1;
+    vector<Player> players_;
+    int winning_token_count_ = 0;
 };
 
-class GameController : public GameInterface
+class GameController : public Game
 {
 public:
-    void BuildPCount();
-    void BuildPContainer();
-    bool PCountCorrect(int input);
-    void FixPCount();
+    void BuildPlayerCount();
+    void BuildPlayerContainer();
+    bool PlayerCountCorrect(int input);
+    void FixPlayerCount();
     void BuildWinningTokenCount();
     void BuildStartingPlayer();
     int GenerateNumberWithinRange(int range);
@@ -60,7 +57,7 @@ public:
     void DealStartingHand(DeckController &deck);
     void ClearWinner();
     void ClearPlaying();
-    void ProcessDraw(DeckInterface &deck);
+    void ProcessDraw(Deck &deck);
     char DrawInput();
     bool CorrectDrawInput(char input);
     char FixDrawInput();

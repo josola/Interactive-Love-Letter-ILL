@@ -13,20 +13,11 @@ class Guard : public Card
 {
 public:
 	Guard(const string name, const int value);
-	~Guard();
+
+    void Action();
 
 private:
 
 };
-
-Guard::Guard(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Guard::~Guard()
-{
-}
 
 #endif // !GUARD_h

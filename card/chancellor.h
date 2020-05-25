@@ -13,20 +13,11 @@ class Chancellor : public Card
 {
 public:
 	Chancellor(const string name, const int value);
-	~Chancellor();
+
+    void Action();
 
 private:
 
 };
-
-Chancellor::Chancellor(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Chancellor::~Chancellor()
-{
-}
 
 #endif // !CHANCELLOR_h

@@ -12,40 +12,37 @@
 
 using std::vector;
 
-class DeckModel
-{
-protected:
-    vector<CardController> deck_;
-};
-
-class DeckInterface : public DeckModel
+class Deck
 {
 public:
     //getters
-    vector<CardController> GetDeck();
-    CardController GetCard(int pos);
+    const vector<Card> GetDeck();
+    const Card GetCard(int pos);
 
     //setters
-    void InsertCard(CardController card);
+    void InsertCard(const Card card);
 
     //actions
     void Shuffle();
-    void RemoveCard(int pos);
+    void RemoveCard(const int pos);
+
+private:
+    vector<Card> deck_;
 };
 
-class DeckController : public DeckInterface
+class DeckController : public Deck
 {
 public:
     void Builder();
 };
 
-class UpController : public DeckInterface
+class UpPile : public Deck
 {
 public:
     void Builder(DeckController deck);
 };
 
-class DownController : public DeckInterface
+class DownPile : public Deck
 {
 };
 

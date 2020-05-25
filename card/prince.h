@@ -13,20 +13,11 @@ class Prince : public Card
 {
 public:
 	Prince(const string name, const int value);
-	~Prince();
+
+    void Action();
 
 private:
 
 };
-
-Prince::Prince(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Prince::~Prince()
-{
-}
 
 #endif // !PRINCE_h

@@ -13,20 +13,11 @@ class Baron : public Card
 {
 public:
 	Baron(const string name, const int value);
-	~Baron();
+
+    void Action();
 
 private:
 
 };
-
-Baron::Baron(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-Baron::~Baron()
-{
-}
 
 #endif // !BARON_h

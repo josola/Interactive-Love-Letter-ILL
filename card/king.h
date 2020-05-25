@@ -13,20 +13,11 @@ class King : public Card
 {
 public:
 	King(const string name, const int value);
-	~King();
+
+    void Action();
 
 private:
 
 };
-
-King::King(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
-
-King::~King()
-{
-}
 
 #endif // !KING_h

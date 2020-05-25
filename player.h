@@ -15,25 +15,10 @@
 using std::string;
 using std::vector;
 
-class PlayerModel
-{
-protected:
-    string name = "";
-    int value = 0;
-    bool current = false;
-    bool winner = false;
-    int guess = 0;
-    bool spy = false;
-    vector<CardController> hand;
-    bool playing = true;
-    int token_count = 0;
-    bool handmaid = false;
-};
-
-class PlayerInterface : public PlayerModel
+class Player
 {
 public:
-    PlayerInterface(string player_name, int player_value) : PlayerModel{} { SetName(player_name), SetValue(player_value); };
+    Player(const string name, const int value);
 
     //getters
     const string Name();
@@ -42,33 +27,37 @@ public:
     const bool Current();
     const bool Spy();
     const int Guess();
-    vector<CardController> const Hand();
-    constexpr bool const Playing();
+    const vector<Card> Hand();
+    const bool Playing();
     const int Tokens();
 
     //setters
-    void SetName(string input);
-    void SetValue(int input);
-    void IsCurrent();
-    void NotCurrent();
-    void IsWinner();
-    void NotWinner();
-    void SetGuess(int output);
-    void IsPlaying();
-    void NotPlaying();
-    void HasHandmaid();
-    void NoHandmaid();
-    void SetSpy(bool output);
-};
-
-class PlayerController : public PlayerInterface
-{
-public:
-    PlayerController(string name = "", int value = 0) : PlayerInterface{ name, value } {};
+    void SetName(const string name);
+    void SetValue(const int value);
+    void SetCurrent(const bool value);
+    void SetWinner(const bool value);
+    void SetGuess(const int value);
+    void SetPlaying(const bool value);
+    void SetHandmaid(const bool value);
+    void SetSpy(const bool value);
 
     //actions
-    CardController DrawCard(DeckController &deck);
-    void InsertCardIntoHand(CardController card);
+    void InsertIntoHand(const Card& card);
+    void RemoveCardFromHand(const int value);
+    void ClearHand();
+    Card DrawCard(Deck& deck);
+
+private:
+    string name_ = " ";
+    int value_ = 0;
+    bool current_ = false;
+    bool winner_ = false;
+    int guess_ = 0;
+    bool spy_ = false;
+    vector<Card> hand_{};
+    bool playing_ = true;
+    int token_count_ = 0;
+    bool handmaid_ = false;
 };
 
-#endif
+#endif // !PLAYER_h

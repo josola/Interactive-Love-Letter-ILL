@@ -7,19 +7,15 @@
 #ifndef CONSOLE_IN_h
 #define CONSOLE_IN_h
 
-#include <string>
-
-using std::string;
-
 class ConsoleIn
 {
 public:
     static int GetIntInput();
-    static bool CorrectIntInput(const int& input);
+    static bool CorrectIntInput(const int input);
     static int FixIntInput();
     static void ClearInput();
     static char GatCharInput();
-    static bool CorrectCharInput(const char& input);
+    static bool CorrectCharInput(const char input);
     static char FixCharInput();
 };
 
