@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of handmaid card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * handmaid.h
+ * determines capabilites of handmaid card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef HANDMAID_h

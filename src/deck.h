@@ -47,4 +47,4 @@ class DownPile : public Deck
 {
 };
 
-#endif
+#endif // !DECK_h

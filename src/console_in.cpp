@@ -1,7 +1,8 @@
 /*
- * Helper utility for console in.
- * This program uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * input.cpp
+ * implementation for input.h
+ * this program uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include <iostream>

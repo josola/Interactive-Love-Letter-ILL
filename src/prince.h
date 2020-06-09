@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of prince card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * prince.h
+ * determines capabilites of prince card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef PRINCE_h

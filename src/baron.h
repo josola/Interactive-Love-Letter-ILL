@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of baron card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * baron.h
+ * determines capabilites of baron card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef BARON_h

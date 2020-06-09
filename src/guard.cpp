@@ -1,3 +1,9 @@
+/*
+ * guard.cpp
+ * implementation for guard.h
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
+ */
 
 #include "guard.h"
 

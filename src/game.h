@@ -67,4 +67,4 @@ public:
     int FixChoiceInput();
 };
 
-#endif
+#endif // !GAME_h

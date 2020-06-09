@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of countess card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * countess.h
+ * determines capabilites of countess card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef COUNTESS_h

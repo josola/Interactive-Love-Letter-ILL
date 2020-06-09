@@ -1,3 +1,9 @@
+/*
+ * spy.cpp
+ * implementation for spy.h
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
+ */
 
 #include <string>
 #include "spy.h"

@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of guard card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * guard.h
+ * determines capabilites of guard card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef GUARD_h

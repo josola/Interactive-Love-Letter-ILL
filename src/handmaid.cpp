@@ -1,3 +1,9 @@
+/*
+ * handmaid.cpp
+ * implementation for handmaid.cpp
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
+ */
 
 #include "handmaid.h"
 

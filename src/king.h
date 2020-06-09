@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of king card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * king.h
+ * determines capabilites of king card
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef KING_h

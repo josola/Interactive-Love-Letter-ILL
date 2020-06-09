@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of chancellor card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * chancellor.h
+ * determines capabilites of chancellor card
+ * this software uses the MIT license.
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef CHANCELLOR_h

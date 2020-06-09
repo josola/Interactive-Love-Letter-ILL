@@ -1,7 +1,8 @@
 /*
- * Helper utility for console in.
- * This program uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * input.h
+ * determines input using the standard input stream
+ * this program uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef CONSOLE_IN_h
@@ -19,4 +20,4 @@ public:
     static char FixCharInput();
 };
 
-#endif
+#endif // !INPUT_h

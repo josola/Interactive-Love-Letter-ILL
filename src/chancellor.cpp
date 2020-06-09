@@ -1,3 +1,9 @@
+/*
+ * chancellor.cpp
+ * implementation for chancellor.h
+ * this software uses the MIT license.
+ * written by Jordan Sola 2019-2020
+ */
 
 #include "chancellor.h"
 

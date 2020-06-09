@@ -1,7 +1,8 @@
 /*
- * Determines capabilites of priest card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * priest.h
+ * determines capabilites of priest card
+ * this software uses the MIT license.
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef PRIEST_h

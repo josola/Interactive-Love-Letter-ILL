@@ -1,7 +1,8 @@
 /*
- * Helper utility for card.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * card.cpp
+ * implementation for card.h
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include "card.h"
