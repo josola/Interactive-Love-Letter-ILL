@@ -1,8 +1,8 @@
 /*
  * player.h
- * Helper utility for player.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * determines player capabilities
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef PLAYER_h
