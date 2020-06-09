@@ -1,8 +1,8 @@
 /*
  * main.cpp
- * Executes the program.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * executes the program
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include <iostream>
