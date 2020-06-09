@@ -1,7 +1,8 @@
 /*
- * Helper utility for deck.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * deck.h
+ * determines capabilites of the deck
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef DECK_h
