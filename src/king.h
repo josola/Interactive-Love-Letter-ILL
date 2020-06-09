@@ -13,12 +13,11 @@
 class King : public Card
 {
 public:
-	King(const string name, const int value);
+    King(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !KING_h

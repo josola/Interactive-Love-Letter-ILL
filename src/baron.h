@@ -13,12 +13,11 @@
 class Baron : public Card
 {
 public:
-	Baron(const string name, const int value);
+    Baron(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !BARON_h

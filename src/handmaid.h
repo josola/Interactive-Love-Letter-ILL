@@ -13,12 +13,11 @@
 class Handmaid : public Card
 {
 public:
-	Handmaid(const string name, const int value);
+    Handmaid(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !HANDMAID_h

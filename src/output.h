@@ -39,7 +39,7 @@ public:
     static void PrintRivalWithSpy(GameController controller);
     static void PrintPlayerHand(const vector<Card> hand);
     static void PrintDrawPrompt(const string name);
-    static void PrintCardChoicePrompt(Player* playerUtil);
+    static void PrintCardChoicePrompt(Player *playerUtil);
 
 private:
 };

@@ -13,12 +13,11 @@
 class Guard : public Card
 {
 public:
-	Guard(const string name, const int value);
+    Guard(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !GUARD_h

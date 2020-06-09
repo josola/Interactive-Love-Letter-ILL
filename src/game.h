@@ -23,7 +23,7 @@ public:
     const int OriginalPlayerCount();
     const int WinningTokenCount();
     vector<Player> Players();
-    Player* CurrentPlayer();
+    Player *CurrentPlayer();
     int FindWinner();
 
     //setters

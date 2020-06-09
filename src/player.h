@@ -43,10 +43,10 @@ public:
     void SetSpy(const bool value);
 
     //actions
-    void InsertIntoHand(const Card& card);
+    void InsertIntoHand(const Card &card);
     void RemoveCardFromHand(const int value);
     void ClearHand();
-    Card DrawCard(Deck& deck);
+    Card DrawCard(Deck &deck);
 
 private:
     string name_ = " ";

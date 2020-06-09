@@ -13,12 +13,11 @@
 class Chancellor : public Card
 {
 public:
-	Chancellor(const string name, const int value);
+    Chancellor(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !CHANCELLOR_h

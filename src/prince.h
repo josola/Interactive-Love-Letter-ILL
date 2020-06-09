@@ -13,12 +13,11 @@
 class Prince : public Card
 {
 public:
-	Prince(const string name, const int value);
+    Prince(const string name, const int value);
 
     void Action();
 
 private:
-
 };
 
 #endif // !PRINCE_h
