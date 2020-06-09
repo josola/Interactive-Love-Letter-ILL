@@ -1,7 +1,8 @@
 /*
- * Determines player information and utility.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * player.cpp
+ * implementation for player.h
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include <algorithm>
