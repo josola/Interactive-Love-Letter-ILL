@@ -7,7 +7,7 @@
 #include <iostream>
 #include <limits>
 #include "console_in.h"
-#include "console_out.h"
+#include "output.h"
 
 using std::cin;
 using std::numeric_limits;

@@ -11,7 +11,7 @@
 #include <iterator>
 #include "game.h"
 #include "console_in.h"
-#include "console_out.h"
+#include "output.h"
 
 using std::any_of;
 using std::distance;

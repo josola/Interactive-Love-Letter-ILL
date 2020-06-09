@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include "console_out.h"
+#include "output.h"
 #include "console_in.h"
 #include "game.h"
 #include "deck.h"
