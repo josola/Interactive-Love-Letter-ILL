@@ -1,11 +1,12 @@
 /*
- * Helper utility for console out.
- * This program uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * output.h
+ * determines output to the standard output stream
+ * this program uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
-#ifndef CONSOLE_OUT_UTIL_h
-#define CONSOLE_OUT_UTIL_h
+#ifndef OUTPUT_h
+#define OUTPUT_h
 
 #include <string>
 #include <vector>
@@ -43,4 +44,4 @@ public:
 private:
 };
 
-#endif
+#endif //!OUTPUT_h

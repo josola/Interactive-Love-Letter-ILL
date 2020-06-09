@@ -1,12 +1,13 @@
 /*
- * Helper utility for console out.
- * This program uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * output.cpp
+ * implementation for output.h
+ * this program uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include <iostream>
 #include <typeinfo>
-#include "console_out.h"
+#include "output.h"
 
 using std::cout;
 
