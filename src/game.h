@@ -1,7 +1,8 @@
 /*
- * Helper utility for game state.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * game.h
+ * determines game state for entire game
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #ifndef GAME_h

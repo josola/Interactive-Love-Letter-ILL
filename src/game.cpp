@@ -1,7 +1,8 @@
 /*
- * Helper utility for game state.
- * This software uses the MIT license.
- * Written by Jordan Sola 2019-2020
+ * game.cpp
+ * implementation for game.h
+ * this software uses the MIT license
+ * written by Jordan Sola 2019-2020
  */
 
 #include <random>
