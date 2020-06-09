@@ -7,11 +7,7 @@
 
 #include "countess.h"
 
-Countess::Countess(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
+Countess::Countess(const string name, const int value) : Card{ name, value } {};
 
 void Countess::Action()
 {

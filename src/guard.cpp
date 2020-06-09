@@ -7,11 +7,7 @@
 
 #include "guard.h"
 
-Guard::Guard(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
+Guard::Guard(const string name, const int value) : Card{ name, value } {};
 
 void Guard::Action()
 {

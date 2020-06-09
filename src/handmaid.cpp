@@ -7,11 +7,7 @@
 
 #include "handmaid.h"
 
-Handmaid::Handmaid(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
+Handmaid::Handmaid(const string name, const int value) : Card{ name, value } {};
 
 void Handmaid::Action()
 {

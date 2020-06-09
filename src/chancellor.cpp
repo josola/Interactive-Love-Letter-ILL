@@ -7,11 +7,7 @@
 
 #include "chancellor.h"
 
-Chancellor::Chancellor(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
+Chancellor::Chancellor(const string name, const int value) : Card{ name, value } {};
 
 void Chancellor::Action()
 {

@@ -10,11 +10,7 @@
 
 using std::string;
 
-Spy::Spy(const string name, const int value) : Card{}
-{
-	SetName(name);
-	SetValue(value);
-}
+Spy::Spy(const string name, const int value) : Card{ name, value } {};
 
 void Spy::Action(Player &player)
 {

@@ -7,6 +7,8 @@
 
 #include "card.h"
 
+Card::Card(const string name, const int value) : name_(name), value_(value) {};
+
 const string Card::GetName()
 {
     return name_;
@@ -14,13 +16,4 @@ const string Card::GetName()
 const int Card::GetValue()
 {
     return value_;
-}
-
-void Card::SetName(const string name)
-{
-    name_ = name;
-}
-void Card::SetValue(const int value)
-{
-    value_ = value;
 }

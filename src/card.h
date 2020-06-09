@@ -15,11 +15,10 @@ using std::string;
 struct Card
 {
 public:
+    Card(const string name, const int value);
+
     const string GetName();
     const int GetValue();
-
-    void SetName(const string name);
-    void SetValue(const int value);
 
 private:
     string name_ = " ";

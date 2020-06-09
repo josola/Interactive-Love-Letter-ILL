@@ -7,11 +7,7 @@
 
 #include "princess.h"
 
-Princess::Princess(const string name, const int value) : Card{}
-{
-    SetName(name);
-    SetValue(value);
-}
+Princess::Princess(const string name, const int value) : Card{ name, value } {};
 
 void Princess::Action()
 {
