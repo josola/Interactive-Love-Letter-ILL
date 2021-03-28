@@ -1,5 +1,5 @@
 #include "deck.h"
-#include "player.h"
+#include "admirer.h"
 #include "input.h"
 #include "reference.h"
 #include "game_state.h"
@@ -27,13 +27,13 @@ int main()
 {
     GameState gameState;
 
-    cout << "\n-- WELCOME TO LOVE LETTER --\n\n";
+    cout << "\n-- WELCOME TO MISSIVE --\n\n";
 
-    // get starting player count
+    // get starting admirer count
     int player_count = -1;
     while (player_count < 2 || player_count > 6)
     {
-        cout << "How many players will be playing: ";
+        cout << "How many admirers will be playing: ";
         cin >> player_count;
         if (cin.fail())
         {
@@ -42,7 +42,7 @@ int main()
         }
         if (player_count < 2 || player_count > 9)
         {
-            cout << "Number must be between 2 and 6 players:\n";
+            cout << "Number must be between 2 and 6 admirers:\n";
         }
     }
     cout << '\n';
@@ -65,7 +65,7 @@ int main()
 
         // discard deck
         vector<Card> discard;
-        if (gameState.players_.size() == 2)
+        if (gameState.admirers_.size() == 2)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -75,7 +75,7 @@ int main()
         }
 
         // deal starting hand
-        for (Player &i : gameState.players_)
+        for (Admirer &i : gameState.admirers_)
         {
             i.Draw(deck.at(0));
             deck.erase(deck.begin() + 0);
@@ -84,41 +84,41 @@ int main()
         // round count prompt
         cout << "-- ROUND " << gameState.round_count_ << " --\n\n";
 
-        // player turn
+        // admirer turn
 
-        vector<Player *> remaining_players;
-        Player *winner = nullptr;
+        vector<Admirer *> remaining_players;
+        Admirer *winner = nullptr;
 
         bool end_round = false;
         while (!end_round)
         {
-            for (size_t i = 0; i < gameState.players_.size(); i++)
+            for (size_t i = 0; i < gameState.admirers_.size(); i++)
             {
-                // set winner of previous round as starting player
+                // set winner of previous round as starting admirer
                 if (gameState.round_count_ > 1)
                 {
-                    for (size_t j = 0; j < gameState.players_.size(); j++)
+                    for (size_t j = 0; j < gameState.admirers_.size(); j++)
                     {
-                        if (gameState.players_.at(j).Starting())
+                        if (gameState.admirers_.at(j).Starting())
                         {
                             i = j;
-                            gameState.players_.at(i).SetStarting(0);
+                            gameState.admirers_.at(i).SetStarting(0);
                         }
                     }
                 }
 
-                // access to player object during play
-                Player *current_player = &gameState.players_.at(i);
+                // access to admirer object during play
+                Admirer *current_admirer = &gameState.admirers_.at(i);
 
-                if (current_player->Status())
+                if (current_admirer->Status())
                 {
-                    current_player->SetProtection(0);
+                    current_admirer->SetProtection(0);
 
                     // draw input
                     char draw = ' ';
                     while (draw != 'd')
                     {
-                        cout << current_player->GetName() << " draw a card (d): ";
+                        cout << current_admirer->GetName() << " draw a card (d): ";
                         cin >> draw;
                         if (cin.fail())
                         {
@@ -131,11 +131,11 @@ int main()
                         }
                     }
 
-                    // current player draw card
+                    // current admirer draw card
                     // current_player->Draw(deck.at(0));
                     deck.erase(deck.begin() + 0);
 
-                    current_player->Draw(Card("HANDMAID", 4, "REF"));
+                    current_admirer->Draw(Card("HANDMAID", 4, "REF"));
 
                     // print game state
                     cout << "\nDeck size: \n";
@@ -169,57 +169,57 @@ int main()
                     }
 
                     cout << "\nOpponents:\n";
-                    for (size_t i = 0; i < gameState.players_.size(); i++)
+                    for (size_t i = 0; i < gameState.admirers_.size(); i++)
                     {
-                        if (gameState.players_.at(i).Status())
+                        if (gameState.admirers_.at(i).Status())
                         {
-                            if (gameState.players_.size() == 2 && gameState.players_.at(i).GetValue() != current_player->GetValue())
+                            if (gameState.admirers_.size() == 2 && gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
                             {
-                                cout << gameState.players_.at(i).GetName() << '\n';
+                                cout << gameState.admirers_.at(i).GetName() << '\n';
                             }
                             else
                             {
-                                if (gameState.players_.at(i).GetValue() != current_player->GetValue())
+                                if (gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
                                 {
-                                    if (i == gameState.players_.size() - 1)
+                                    if (i == gameState.admirers_.size() - 1)
                                     {
-                                        cout << gameState.players_.at(i).GetName() << '\n';
+                                        cout << gameState.admirers_.at(i).GetName() << '\n';
                                     }
                                     else
                                     {
-                                        cout << gameState.players_.at(i).GetName() << ", ";
+                                        cout << gameState.admirers_.at(i).GetName() << ", ";
                                     }
                                 }
                             }
                         }
                     }
 
-                    cout << "\nHandmaid protection:\n";
-                    bool players_have_handmaid = any_of(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.ProtectionStatus(); });
-                    if (players_have_handmaid)
+                    cout << "\nDamsel protection:\n";
+                    bool players_have_damsel = any_of(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.ProtectionStatus(); });
+                    if (players_have_damsel)
                     {
-                        int handmaid_count = count_if(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.ProtectionStatus(); });
-                        if (handmaid_count == 1)
+                        int damsel_count = count_if(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.ProtectionStatus(); });
+                        if (damsel_count == 1)
                         {
-                            for (size_t i = 0; i < gameState.players_.size(); i++)
+                            for (size_t i = 0; i < gameState.admirers_.size(); i++)
                             {
-                                Player *handmaidPlayer = &gameState.players_.at(i);
-                                if (handmaidPlayer->ProtectionStatus() && (handmaidPlayer->GetValue() != current_player->GetValue()))
+                                Admirer *damselPlayer = &gameState.admirers_.at(i);
+                                if (damselPlayer->ProtectionStatus() && (damselPlayer->GetValue() != current_admirer->GetValue()))
                                 {
-                                    cout << handmaidPlayer->GetName() << '\n';
+                                    cout << damselPlayer->GetName() << '\n';
                                     break;
                                 }
                             }
                         }
                         else
                         {
-                            int handmaid_tally = 1;
-                            for (size_t i = 0; i < gameState.players_.size(); i++)
+                            int damsel_tally = 1;
+                            for (size_t i = 0; i < gameState.admirers_.size(); i++)
                             {
-                                Player *iPlayer = &gameState.players_.at(i);
-                                if (iPlayer->ProtectionStatus() && (iPlayer->GetValue() != current_player->GetValue()))
+                                Admirer *iPlayer = &gameState.admirers_.at(i);
+                                if (iPlayer->ProtectionStatus() && (iPlayer->GetValue() != current_admirer->GetValue()))
                                 {
-                                    if (handmaid_tally != handmaid_count)
+                                    if (damsel_tally != damsel_count)
                                     {
                                         cout << iPlayer->GetName() << ", ";
                                     }
@@ -227,7 +227,7 @@ int main()
                                     {
                                         cout << iPlayer->GetName() << '\n';
                                     }
-                                    handmaid_tally++;
+                                    damsel_tally++;
                                 }
                             }
                         }
@@ -237,35 +237,35 @@ int main()
                         cout << "NONE\n";
                     }
 
-                    cout << "\nSpy Bonus:\n";
-                    bool players_have_spy = any_of(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.SpyStatus(); });
-                    if (players_have_spy)
+                    cout << "\nEmissary Bonus:\n";
+                    bool players_have_emissary = any_of(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.HasEmissaryBonus(); });
+                    if (players_have_emissary)
                     {
-                        int spy_count = count_if(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.SpyStatus(); });
-                        if (spy_count == 1)
+                        int emissary_count = count_if(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.HasEmissaryBonus(); });
+                        if (emissary_count == 1)
                         {
-                            for (size_t i = 0; i < gameState.players_.size(); i++)
+                            for (size_t i = 0; i < gameState.admirers_.size(); i++)
                             {
-                                Player *spyPlayer = &gameState.players_.at(i);
-                                if (gameState.players_.at(i).SpyStatus())
+                                Admirer *emissaryPlayer = &gameState.admirers_.at(i);
+                                if (gameState.admirers_.at(i).HasEmissaryBonus())
                                 {
-                                    cout << spyPlayer->GetName() << '\n';
+                                    cout << emissaryPlayer->GetName() << '\n';
                                     break;
                                 }
                             }
                         }
                         else
                         {
-                            int spy_tally = 1;
-                            for (size_t i = 0; i < gameState.players_.size(); i++)
+                            int emissary_tally = 1;
+                            for (size_t i = 0; i < gameState.admirers_.size(); i++)
                             {
-                                Player *iPlayer = &gameState.players_.at(i);
-                                if (iPlayer->GetValue() != current_player->GetValue() && iPlayer->SpyStatus())
+                                Admirer *iPlayer = &gameState.admirers_.at(i);
+                                if (iPlayer->GetValue() != current_admirer->GetValue() && iPlayer->HasEmissaryBonus())
                                 {
-                                    if (spy_tally == 1)
+                                    if (emissary_tally == 1)
                                     {
                                         cout << iPlayer->GetName() << ", ";
-                                        spy_tally++;
+                                        emissary_tally++;
                                     }
                                     else
                                     {
@@ -280,40 +280,40 @@ int main()
                         cout << "NONE\n";
                     }
 
-                    current_player->PrintHand();
+                    current_admirer->PrintHand();
 
                     // log cards already in hand
                     vector<int> in_hand;
-                    for (Card iCard : *current_player->GetHand())
+                    for (Card iCard : *current_admirer->GetHand())
                     {
                         in_hand.push_back(iCard.GetValue());
                     }
 
-                    // countess restriction check
-                    bool countess = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 8; });
-                    bool king = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 7; });
-                    bool prince = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 5; });
+                    // duchess restriction check
+                    bool duchess = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 8; });
+                    bool emperor = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 7; });
+                    bool archduke = any_of(in_hand.begin(), in_hand.end(), [](int i) { return i == 5; });
 
                     bool correct_input = false;
                     int card = 0;
                     while (!correct_input)
                     {
-                        cout << current_player->GetName() << " play a card: ";
+                        cout << current_admirer->GetName() << " play a card: ";
                         cin >> card;
                         SanitizeCard(card, -1);
 
-                        if ((countess && king) || (countess && prince))
+                        if ((duchess && emperor) || (duchess && archduke))
                         {
                             if (cin.fail())
                             {
                                 cin.clear();
                                 cin.ignore(1000, '\n');
                             }
-                            cout << "You MUST play the Countess.\n";
+                            cout << "You MUST play the Duchess.\n";
                         }
                         else
                         {
-                            for (Card &iCard : *current_player->GetHand())
+                            for (Card &iCard : *current_admirer->GetHand())
                             {
                                 if (iCard.GetValue() == card)
                                 {
@@ -329,50 +329,50 @@ int main()
                     }
 
                     // discard card
-                    current_player->Discard(card, discard);
+                    current_admirer->Discard(card, discard);
 
                     // play card action
                     switch (card)
                     {
                     case 0:
-                        Spy(current_player);
+                        Emissary(current_admirer);
                         break;
                     case 1:
-                        Guard(gameState, current_player, discard);
+                        Defender(gameState, current_admirer, discard);
                         break;
                     case 2:
-                        Priest(gameState, current_player);
+                        Cleric(gameState, current_admirer);
                         break;
                     case 3:
-                        Baron(gameState, current_player, discard);
+                        Lord(gameState, current_admirer, discard);
                         break;
                     case 4:
-                        Handmaid(current_player);
+                        Damsel(current_admirer);
                         break;
                     case 5:
-                        Prince(gameState, current_player, discard);
+                        Archduke(gameState, current_admirer, discard);
                         break;
                     case 6:
-                        Chancellor(discard, current_player);
+                        Adjudicator(discard, current_admirer);
                         break;
                     case 7:
-                        King(gameState, current_player);
+                        Emperor(gameState, current_admirer);
                         break;
                     case 8:
-                        Countess(current_player);
+                        Duchess(current_admirer);
                         break;
                     case 9:
-                        Princess(current_player, discard);
+                        GrandDuchess(current_admirer, discard);
                         break;
                     }
                     cout << '\n';
                 }
 
-                // reset remaining players, so as not to stack remainders
+                // reset remaining admirers, so as not to stack remainders
                 remaining_players.erase(remaining_players.begin(), remaining_players.end());
 
-                // check how many standing players
-                for (Player &iPlayer : gameState.players_)
+                // check how many standing admirers
+                for (Admirer &iPlayer : gameState.admirers_)
                 {
                     if (iPlayer.Status())
                     {
@@ -394,18 +394,18 @@ int main()
 
         // round end
 
-        // deck is empty, players compare hands, highest hand wins the round
+        // deck is empty, admirers compare hands, highest hand wins the round
         if (deck.size() == 0)
         {
-            cout << "Deck is empty, players compare hands!\n";
-            for (size_t i = 0; i < gameState.players_.size(); i++)
+            cout << "Deck is empty, admirers compare hands!\n";
+            for (size_t i = 0; i < gameState.admirers_.size(); i++)
             {
-                Player *iPlayer = &gameState.players_.at(i);
-                if (i < gameState.players_.size() - 1)
+                Admirer *iPlayer = &gameState.admirers_.at(i);
+                if (i < gameState.admirers_.size() - 1)
                 {
-                    if (iPlayer->GetHand()->at(0).GetValue() > gameState.players_.at(i + 1).GetHand()->at(0).GetValue())
+                    if (iPlayer->GetHand()->at(0).GetValue() > gameState.admirers_.at(i + 1).GetHand()->at(0).GetValue())
                     {
-                        winner = &gameState.players_.at(i);
+                        winner = &gameState.admirers_.at(i);
                     }
                 }
             }
@@ -414,33 +414,33 @@ int main()
             winner->Winner(1);
         }
 
-        // spy bonus
-        int spy_count = 0;
-        if (any_of(gameState.players_.begin(), gameState.players_.end(), [](Player &iPlayer) { return iPlayer.SpyStatus(); }))
+        // emissary bonus
+        int emissary_count = 0;
+        if (any_of(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &iPlayer) { return iPlayer.HasEmissaryBonus(); }))
         {
-            Player *spy_bonus = nullptr;
-            for (Player &iPlayer : gameState.players_)
+            Admirer *emissary_bonus = nullptr;
+            for (Admirer &iPlayer : gameState.admirers_)
             {
-                if (iPlayer.Status() && iPlayer.SpyStatus() && spy_count < 2)
+                if (iPlayer.Status() && iPlayer.HasEmissaryBonus() && emissary_count < 2)
                 {
-                    spy_bonus = &iPlayer;
-                    spy_count++;
+                    emissary_bonus = &iPlayer;
+                    emissary_count++;
                 }
             }
-            if (spy_count >= 2)
+            if (emissary_count >= 2)
             {
-                cout << "Multiple players had the Spy, no one gets a bonus\n";
+                cout << "Multiple admirers had the Emissary, no one gets a bonus\n";
             }
-            else if (spy_count == 1)
+            else if (emissary_count == 1)
             {
-                cout << spy_bonus->GetName() << " had the Spy!\n";
-                spy_bonus->Addtoken();
-                cout << spy_bonus->GetName() << " token count: " << spy_bonus->GetTokenCount() << '\n';
+                cout << emissary_bonus->GetName() << " had the Emissary!\n";
+                emissary_bonus->Addtoken();
+                cout << emissary_bonus->GetName() << " token count: " << emissary_bonus->GetTokenCount() << '\n';
             }
         }
 
-        // celebrate the last player standing
-        for (Player &iPlayer : gameState.players_)
+        // celebrate the last admirer standing
+        for (Admirer &iPlayer : gameState.admirers_)
         {
             if (iPlayer.Status())
             {
@@ -448,22 +448,22 @@ int main()
             }
         }
 
-        cout << winner->GetName() << " was the last player standing!\n";
+        cout << winner->GetName() << " was the last admirer standing!\n";
         winner->Addtoken();
         cout << winner->GetName() << " token count: " << winner->GetTokenCount() << "\n\n";
         winner->SetStarting(1);
 
-        // set players to base
+        // set admirers to base
         if (gameState.round_count_ > 1)
         {
-            for (Player &i : gameState.players_)
+            for (Admirer &i : gameState.admirers_)
             {
                 i.Reset();
             }
         }
 
-        // check that player has winning token count
-        for (Player &iPlayer : gameState.players_)
+        // check that admirer has winning token count
+        for (Admirer &iPlayer : gameState.admirers_)
         {
             if (iPlayer.GetTokenCount() == gameState.winning_token_count_)
             {

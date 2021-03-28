@@ -1,4 +1,4 @@
-#include "player.h"
+#include "admirer.h"
 #include "deck.h"
 #include "card.h"
 
@@ -12,71 +12,71 @@ using std::cout;
 using std::string;
 using std::vector;
 
-Player::Player(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference){};
+Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference){};
 
 // getters
-const bool Player::ProtectionStatus() const
+const bool Admirer::ProtectionStatus() const
 {
   return handmaid_;
 }
 
-const string Player::GetName() const
+const string Admirer::GetName() const
 {
   return name_;
 }
 
-vector<Card>* Player::GetHand()
+vector<Card>* Admirer::GetHand()
 {
   return &hand_;
 }
 
-const bool Player::Status() const
+const bool Admirer::Status() const
 {
   return playing_;
 }
 
-const int Player::GetValue() const
+const int Admirer::GetValue() const
 {
   return value_;
 }
 
-const int Player::GetTokenCount() const
+const int Admirer::GetTokenCount() const
 {
   return token_count_;
 }
 
-const bool Player::SpyStatus() const
+const bool Admirer::HasEmissaryBonus() const
 {
   return spy_;
 }
 
-Converter *Player::GetConversion()
+Converter *Admirer::GetConversion()
 {
   return &convert_;
 }
 
-const bool Player::Starting() const
+const bool Admirer::Starting() const
 {
   return starting_;
 }
 
 // setters
-void Player::Draw(const Card obj)
+void Admirer::Draw(const Card obj)
 {
   hand_.push_back(obj);
 }
 
-void Player::SetProtection(const bool state)
+void Admirer::SetProtection(const bool state)
 {
   handmaid_ = state;
 }
 
-void Player::GainSpy()
+void Admirer::GainEmissaryBonus()
 {
   spy_ = true;
 }
 
-void Player::Reset()
+void Admirer::Reset()
 {
   hand_.clear();
   handmaid_ = false;
@@ -84,7 +84,7 @@ void Player::Reset()
   playing_ = true;
 }
 
-void Player::Discard(const int choice, vector<Card> &deck)
+void Admirer::Discard(const int choice, vector<Card> &deck)
 {
   for (Card &iCard : hand_)
   {
@@ -97,7 +97,7 @@ void Player::Discard(const int choice, vector<Card> &deck)
   }
 }
 
-void Player::DiscardHand(vector<Card> &deck)
+void Admirer::DiscardHand(vector<Card> &deck)
 {
   for (Card &iCard : hand_)
   {
@@ -105,17 +105,17 @@ void Player::DiscardHand(vector<Card> &deck)
   }
 }
 
-void Player::Addtoken()
+void Admirer::Addtoken()
 {
   token_count_++;
 }
 
-void Player::Winner(const bool state)
+void Admirer::Winner(const bool state)
 {
   winner_ = state;
 }
 
-void Player::RemoveCard(const int card)
+void Admirer::RemoveCard(const int card)
 {
   for (size_t i = 0; i < hand_.size(); i++)
   {
@@ -127,20 +127,20 @@ void Player::RemoveCard(const int card)
   }
 }
 
-void Player::Out(vector<Card> &deck)
+void Admirer::Out(vector<Card> &deck)
 {
   this->DiscardHand(deck);
   this->Reset();
   this->playing_ = false;
 }
 
-void Player::SetStarting(const bool state)
+void Admirer::SetStarting(const bool state)
 {
   starting_ = state;
 }
 
 // printers
-void Player::PrintHand() const
+void Admirer::PrintHand() const
 {
   cout << '\n' << this->GetName() << " hand:\n";
 

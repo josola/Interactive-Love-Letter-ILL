@@ -1,7 +1,7 @@
 #include "card_actions.h"
 #include "input.h"
 #include "game_state.h"
-#include "player.h"
+#include "admirer.h"
 #include "deck.h"
 
 #include <iostream>
@@ -14,21 +14,21 @@ using std::cout;
 using std::sort;
 
 // actions
-void Spy(Player *player)
+void Emissary(Admirer *player)
 {
-    assert(!player->SpyStatus());
-    player->GainSpy();
+    assert(!player->HasEmissaryBonus());
+    player->GainEmissaryBonus();
 }
 
-void Guard(GameState &state, Player *aggressor, vector<Card> &deck)
+void Defender(GameState &state, Admirer *aggressor, vector<Card> &deck)
 {
     if (OpponentsProtected(aggressor, state))
     {
-        cout << "All players have Handmaid protection!\n";
+        cout << "All players have Damsel protection!\n";
         return;
     }
     
-    Player *target = GetTarget(aggressor, state, 1);
+    Admirer *target = GetTarget(aggressor, state, 1);
     
     cout << aggressor->GetName() << " guess a card: ";
     
@@ -49,28 +49,28 @@ void Guard(GameState &state, Player *aggressor, vector<Card> &deck)
     cout << "No match!\n";
 }
 
-void Priest(GameState &state, Player *aggressor)
+void Cleric(GameState &state, Admirer *aggressor)
 {
     if (OpponentsProtected(aggressor, state))
     {
-        cout << "All players have Handmaid protection!\n";
+        cout << "All players have Damsel protection!\n";
         return;
     }
     
-    Player *target = GetTarget(aggressor, state, 2);
+    Admirer *target = GetTarget(aggressor, state, 2);
 
     target->PrintHand();
 }
 
-void Baron(GameState &state, Player *aggressor, vector<Card> &deck)
+void Lord(GameState &state, Admirer *aggressor, vector<Card> &deck)
 {
     if (OpponentsProtected(aggressor, state))
     {
-        cout << "All players have Handmaid protection!\n";
+        cout << "All players have Damsel protection!\n";
         return;
     }
     
-    Player *target = GetTarget(aggressor, state, 3);
+    Admirer *target = GetTarget(aggressor, state, 3);
     
     vector<Card>* target_hand = target->GetHand();
     vector<Card>* aggressor_hand = aggressor->GetHand();
@@ -82,7 +82,7 @@ void Baron(GameState &state, Player *aggressor, vector<Card> &deck)
     }
     else if (aggressor_hand->at(0).GetValue() == target_hand->at(0).GetValue())
     {
-        cout << "Players hand the same card!\n";
+        cout << "Admirers hand the same card!\n";
     }
     else
     {
@@ -91,24 +91,24 @@ void Baron(GameState &state, Player *aggressor, vector<Card> &deck)
     }
 }
 
-void Handmaid(Player *player)
+void Damsel(Admirer *player)
 {
     assert(!player->ProtectionStatus());
     player->SetProtection(1);
 }
 
-void Prince(GameState &state, Player *aggressor, vector<Card> &deck)
+void Archduke(GameState &state, Admirer *aggressor, vector<Card> &deck)
 {
     if (OpponentsProtected(aggressor, state))
     {
-        cout << "All players have Handmaid protection!\n";
-        cout << "Prince applies to you!\n";
+        cout << "All players have Damsel protection!\n";
+        cout << "Archduke applies to you!\n";
         
         vector<Card> *hand = aggressor->GetHand();
         
         if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
         {
-            Princess(aggressor, deck);
+            GrandDuchess(aggressor, deck);
         }
         else
         {
@@ -119,7 +119,7 @@ void Prince(GameState &state, Player *aggressor, vector<Card> &deck)
         return;
     }
     
-    Player *target = GetTarget(aggressor, state, 5);
+    Admirer *target = GetTarget(aggressor, state, 5);
 
     if (target->GetValue() == aggressor->GetValue())
     {
@@ -134,7 +134,7 @@ void Prince(GameState &state, Player *aggressor, vector<Card> &deck)
 
         if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
         {
-            Princess(aggressor, deck);
+            GrandDuchess(aggressor, deck);
         }
         else
         {
@@ -151,7 +151,7 @@ void Prince(GameState &state, Player *aggressor, vector<Card> &deck)
 
         if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
         {
-            Princess(target, deck);
+            GrandDuchess(target, deck);
         }
         else
         {
@@ -162,7 +162,7 @@ void Prince(GameState &state, Player *aggressor, vector<Card> &deck)
     }
 }
 
-void Chancellor(vector<Card> &deck, Player *player) // infinite loop when drawing two cards?
+void Adjudicator(vector<Card> &deck, Admirer *player) // infinite loop when drawing two cards?
 {
     cout << player->GetName() << " draw two cards (d): ";
 
@@ -185,7 +185,7 @@ void Chancellor(vector<Card> &deck, Player *player) // infinite loop when drawin
 
     if (first == 9)
     {
-        Princess(player, deck);
+        GrandDuchess(player, deck);
     }
     else
     {
@@ -200,7 +200,7 @@ void Chancellor(vector<Card> &deck, Player *player) // infinite loop when drawin
 
     if (second == 9)
     {
-        Princess(player, deck);
+        GrandDuchess(player, deck);
     }
     else
     {
@@ -208,15 +208,15 @@ void Chancellor(vector<Card> &deck, Player *player) // infinite loop when drawin
     }
 }
 
-void King(GameState &state, Player *aggressor)
+void Emperor(GameState &state, Admirer *aggressor)
 {
     if (OpponentsProtected(aggressor, state))
     {
-        cout << "All players have Handmaid protection!\n";
+        cout << "All players have Damsel protection!\n";
         return;
     }
     
-    Player *target = GetTarget(aggressor, state, 7);
+    Admirer *target = GetTarget(aggressor, state, 7);
 
     cout << target->GetName() << " trade hands with " << aggressor->GetName() << '\n';
 
@@ -228,13 +228,13 @@ void King(GameState &state, Player *aggressor)
     aggressor->PrintHand();
 }
 
-void Countess(Player *player)
+void Duchess(Admirer *player)
 {
-    cout << player->GetName() << " has played the Countess!\n";
+    cout << player->GetName() << " has played the Duchess!\n";
 }
 
-void Princess(Player *player, vector<Card> &deck)
+void GrandDuchess(Admirer *player, vector<Card> &deck)
 {
-    cout << player->GetName() << " had the Princess!\n";
+    cout << player->GetName() << " had the GrandDuchess!\n";
     player->Out(deck);
 }

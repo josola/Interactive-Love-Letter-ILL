@@ -16,16 +16,16 @@
 
 using std::vector;
 
-class Player;
+class Admirer;
 
 struct GameState
 {
 	// methods
-	void InsertPlayer(Player player);
+	void InsertPlayer(Admirer admirer);
 	void SetPlayers(int count);
 
 	// data
-	vector<Player> players_;
+	vector<Admirer> admirers_;
 	int winning_token_count_ = 0;
 	int round_count_ = 1;
 };
