@@ -1,10 +1,10 @@
 # Missive 🖥️
 
-Missive is an open source, text-based, single-player, card game based on the popular game Love Letter. You play as an admirer of the Emperor's daughter The Grand Duchess of Mannheim. But you aren't the only one fighting for her father's seal of approval, and her heart. Other admirers are vying for her attention alongside you. This is unacceptable, you must take action. Knock out your opponents by utilizing the specialized skills of your entourage: Defender, Cleric, Lord, Damsel, Archduke, Emperor, Duchess, and The Grand Duchess herself. Knock out the other admirers to be the last one standing and you shall win the heart of the Grand Duchess!
+Missive is an open source, text-based, single-admirer, card game based on the popular game Love Letter. You play as an admirer of the Emperor's daughter The Grand Duchess of Mannheim. But you aren't the only one fighting for her father's seal of approval, and her heart. Other admirers are vying for her attention alongside you. This is unacceptable, you must take action. Knock out your opponents by utilizing the specialized skills of your entourage: Defender, Cleric, Lord, Damsel, Archduke, Emperor, Duchess, Emissary, and The Grand Duchess herself. Knock out the other admirers to be the last one standing and you shall win the heart of the Grand Duchess!
 
 ## Project Structure
 
-This project is written entirely in native C++ code. No external libraries, no mixing of languages. The purpose of this is to keep things as simple as possible. Missive uses Object Oriented paradigms to function in a clean and straightforward manner. There are five classes you can work with: Card, Converter, GameState, Player, and Reference. Here is a quick overview of each file in the project and its purpose:
+This project is written entirely in native C++ code. No external libraries, no mixing of languages. The purpose of this is to keep things as simple as possible. Missive uses Object Oriented paradigms to function in a clean and straightforward manner. There are five classes you can work with: Card, Converter, GameState, Admirer, and Reference. Here is a quick overview of each file in the project and its purpose:
 
 - main.cpp
   - The main point of entry to play the game. Everything coalesces here and executes from here.
@@ -25,9 +25,9 @@ This project is written entirely in native C++ code. No external libraries, no m
   - Holds information that is tracked as the "Game State". The Game State determines who is winning, who is out, how many cards they have in their hands, etc.
 
 - input.cpp
-  - Checks raw input from the human player and determines whether it is viable and modifies input to work within overall program structure.
+  - Checks raw input from the human admirer and determines whether it is viable and modifies input to work within overall program structure.
 
-- player.cpp (class)
+- admirer.cpp (class)
   - Determines the capabilities, and information, an Admirer can take action on during game-play.
 
 - reference.cpp (class)
@@ -47,31 +47,31 @@ This project is written entirely in native C++ code. No external libraries, no m
     cout << "\n-- WELCOME TO LOVE LETTER --\n\n";
     ```
 
-3. The `player_count` is populated in a local variable.
+3. The `admirer_count` is populated in a local variable.
    
     ```cpp
-    int player_count = -1;
-    while (player_count < 2 || player_count > 6)
+    int admirer_count = -1;
+    while (admirer_count < 2 || admirer_count > 6)
     {
-        cout << "How many players will be playing: ";
-        cin >> player_count;
+        cout << "How many admirers will be playing: ";
+        cin >> admirer_count;
         if (cin.fail())
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-        if (player_count < 2 || player_count > 9)
+        if (admirer_count < 2 || admirer_count > 9)
         {
-            cout << "Number must be between 2 and 6 players:\n";
+            cout << "Number must be between 2 and 6 admirers:\n";
         }
     }
     cout << '\n';
     ```
 
-4. The number of players for the current session gets set in the `GameState`.
+4. The number of admirers for the current session gets set in the `GameState`.
 
     ```cpp
-    gameState.SetPlayers(player_count);
+    gameState.SetAdmirers(admirer_count);
     ```
 
 5. The main game loop begins.
@@ -99,11 +99,11 @@ This project is written entirely in native C++ code. No external libraries, no m
         deck.erase(deck.begin() + 0);
     ```
 
-8. The `discard` pile is loaded onto the stack. If there are more than two players, the discard pile remains empty until it gets used later on. If there are only two players, two cards are pushed from the main deck to the discard pile.
+8. The `discard` pile is loaded onto the stack. If there are more than two admirers, the discard pile remains empty until it gets used later on. If there are only two admirers, two cards are pushed from the main deck to the discard pile.
 
     ```cpp
         vector<Card> discard;
-        if (gameState.players_.size() == 2)
+        if (gameState.admirers_.size() == 2)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -116,7 +116,7 @@ This project is written entirely in native C++ code. No external libraries, no m
 9.  We deal the starting hand to each of the admirers in the current session.
 
     ```cpp
-    for (Player &i : gameState.players_)
+    for (Admirer &i : gameState.admirers_)
           {
               i.Draw(deck.at(0));
               deck.erase(deck.begin() + 0);
@@ -128,14 +128,14 @@ This project is written entirely in native C++ code. No external libraries, no m
     cout << "-- ROUND " << gameState.round_count_ << " --\n\n";
     ```
 
-11. The player turn begins. An empty vector container, that will hold the remaining players in the match, and an empty `Player` object, that will hold the winning player object, are loaded onto the stack.
+11. The admirer turn begins. An empty vector container, that will hold the remaining admirers in the match, and an empty `Admirer` object, that will hold the winning admirer object, are loaded onto the stack.
 
     ```cpp
-    vector<Player *> remaining_players;
-    Player *winner = nullptr;
+    vector<Admirer *> remaining_admirers;
+    Admirer *winner = nullptr;
     ```
 
-12. An `end_round` flag is set to false, the round has just begun. This will be set to true if there is only one admirer left standing or there are no more cards in the main deck. The round logic is contained within a `while` loop. The number of remaining players is checked by obtaining the size of the `remaining_players` vector.
+12. An `end_round` flag is set to false, the round has just begun. This will be set to true if there is only one admirer left standing or there are no more cards in the main deck. The round logic is contained within a `while` loop. The number of remaining admirers is checked by obtaining the size of the `remaining_admirers` vector.
 
     ```cpp
     bool end_round = false;
@@ -144,7 +144,7 @@ This project is written entirely in native C++ code. No external libraries, no m
       // round logic
       ...
 
-      if (deck.empty() || remaining_players.size() == 1)
+      if (deck.empty() || remaining_admirers.size() == 1)
       {
           end_round = true;
           break;
@@ -152,58 +152,58 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-13. Players execute their turns in order from the starting player to the plaer with the lowest position. This is done in a loop that iterates through the vector container with the Player objects.
+13. Admirers execute their turns in order from the starting admirer to the plaer with the lowest position. This is done in a loop that iterates through the vector container with the Admirer objects.
 
     ```cpp
-    for (size_t i = 0; i < gameState.players_.size(); i++)
+    for (size_t i = 0; i < gameState.admirers_.size(); i++)
     {
         ...
     }
     ```
 
-14. If the current round is the second or later, the winner of the last round becomes the starting player of the current round.
+14. If the current round is the second or later, the winner of the last round becomes the starting admirer of the current round.
 
     ```cpp
     if (gameState.round_count_ > 1)
     {
-        for (size_t j = 0; j < gameState.players_.size(); j++)
+        for (size_t j = 0; j < gameState.admirers_.size(); j++)
         {
-            if (gameState.players_.at(j).Starting())
+            if (gameState.admirers_.at(j).Starting())
             {
                 i = j;
-                gameState.players_.at(i).SetStarting(0);
+                gameState.admirers_.at(i).SetStarting(0);
             }
         }
     }
     ```
 
-15. Create a pointer to where the current player resides in the player container. This makes manipulating the current player's state, as well as game-play interactions, easier to write and simpler to understand.
+15. Create a pointer to where the current admirer resides in the admirer container. This makes manipulating the current admirer's state, as well as game-play interactions, easier to write and simpler to understand.
 
     ```cpp
-    Player *current_player = &gameState.players_.at(i);
+    Admirer *current_admirer = &gameState.admirers_.at(i);
     ```
 
-16. The "current player" has their `Status()` checked to make sure they are actually playing. This is necessary to avoid having to physically remove player objects that are not playing in the current session from the player object container. There is no `else` attached to this `if` statement as if the statement is fales, the turn will sompliy move onto the next player.
+16. The "current admirer" has their `Status()` checked to make sure they are actually playing. This is necessary to avoid having to physically remove admirer objects that are not playing in the current session from the admirer object container. There is no `else` attached to this `if` statement as if the statement is fales, the turn will sompliy move onto the next admirer.
 
     ```cpp
-    if (current_player->Status())
+    if (current_admirer->Status())
     {
         ...
     }
 
-17. Remove the current player's protections from their previous turn.
+17. Remove the current admirer's protections from their previous turn.
 
     ```cpp
-    current_player->SetProtection(0);
+    current_admirer->SetProtection(0);
     ```
 
-18. Input is taken as a character `d` from the human player. This increases a feeling of interaction with the innards of the game.
+18. Input is taken as a character `d` from the human admirer. This increases a feeling of interaction with the innards of the game.
 
     ```cpp
     char draw = ' ';
     while (draw != 'd')
     {
-        cout << current_player->GetName() << " draw a card (d): ";
+        cout << current_admirer->GetName() << " draw a card (d): ";
         cin >> draw;
         if (cin.fail())
         {
@@ -217,24 +217,24 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-19. The card object at the front/top of the main deck object is deleted from the container's memory. Then the current player object takes a card object into its state/hand.
+19. The card object at the front/top of the main deck object is deleted from the container's memory. Then the current admirer object takes a card object into its state/hand.
 
     ```cpp
     deck.erase(deck.begin() + 0);
 
-    current_player->Draw(Card("HANDMAID", 4, "REF"));
+    current_admirer->Draw(Card("HANDMAID", 4, "REF"));
     ```
 
 20. The following bullets are included in printing the game state. Printing the game state occurs at once.
 
-    - Print the size of the deck. Allows human players to try to count remaining cards and what cards are out in the playing field. This is just the size of the main deck container.
+    - Print the size of the deck. Allows human admirers to try to count remaining cards and what cards are out in the playing field. This is just the size of the main deck container.
 
     ```cpp
     cout << "\nDeck size: \n";
     cout << deck.size() << '\n';
     ```
 
-    - Print the discard pile. In a real life game of Missive, players have access to view the cards contained within the discard pile, as they are discarded face-up on the table. Extra code is involved to determine whether the discard pile is empty, has only one card, or has more than one card. This allows selective formatting when printing the discard pile's information to the standard output.
+    - Print the discard pile. In a real life game of Missive, admirers have access to view the cards contained within the discard pile, as they are discarded face-up on the table. Extra code is involved to determine whether the discard pile is empty, has only one card, or has more than one card. This allows selective formatting when printing the discard pile's information to the standard output.
 
     ```cpp
     cout << "\nDiscard pile:\n";
@@ -265,29 +265,29 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-    - Print the remaining opponents in the current session. This allows human players to keep track of who is playing and who has been knocked out.
+    - Print the remaining opponents in the current session. This allows human admirers to keep track of who is playing and who has been knocked out.
 
     ```cpp
     cout << "\nOpponents:\n";
-    for (size_t i = 0; i < gameState.players_.size(); i++)
+    for (size_t i = 0; i < gameState.admirers_.size(); i++)
     {
-        if (gameState.players_.at(i).Status())
+        if (gameState.admirers_.at(i).Status())
         {
-            if (gameState.players_.size() == 2 && gameState.players_.at(i).GetValue() != current_player->GetValue())
+            if (gameState.admirers_.size() == 2 && gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
             {
-                cout << gameState.players_.at(i).GetName() << '\n';
+                cout << gameState.admirers_.at(i).GetName() << '\n';
             }
             else
             {
-                if (gameState.players_.at(i).GetValue() != current_player->GetValue())
+                if (gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
                 {
-                    if (i == gameState.players_.size() - 1)
+                    if (i == gameState.admirers_.size() - 1)
                     {
-                        cout << gameState.players_.at(i).GetName() << '\n';
+                        cout << gameState.admirers_.at(i).GetName() << '\n';
                     }
                     else
                     {
-                        cout << gameState.players_.at(i).GetName() << ", ";
+                        cout << gameState.admirers_.at(i).GetName() << ", ";
                     }
                 }
             }
@@ -295,29 +295,29 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-    - Print admirers who have Handmaid protection. Admirers with Handmaid protection cannot be targeted by aggresive cards.
+    - Print admirers who have Damsel protection. Admirers with Damsel protection cannot be targeted by aggresive cards.
 
     ```cpp
     cout << "\nOpponents:\n";
-    for (size_t i = 0; i < gameState.players_.size(); i++)
+    for (size_t i = 0; i < gameState.admirers_.size(); i++)
     {
-        if (gameState.players_.at(i).Status())
+        if (gameState.admirers_.at(i).Status())
         {
-            if (gameState.players_.size() == 2 && gameState.players_.at(i).GetValue() != current_player->GetValue())
+            if (gameState.admirers_.size() == 2 && gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
             {
-                cout << gameState.players_.at(i).GetName() << '\n';
+                cout << gameState.admirers_.at(i).GetName() << '\n';
             }
             else
             {
-                if (gameState.players_.at(i).GetValue() != current_player->GetValue())
+                if (gameState.admirers_.at(i).GetValue() != current_admirer->GetValue())
                 {
-                    if (i == gameState.players_.size() - 1)
+                    if (i == gameState.admirers_.size() - 1)
                     {
-                        cout << gameState.players_.at(i).GetName() << '\n';
+                        cout << gameState.admirers_.at(i).GetName() << '\n';
                     }
                     else
                     {
-                        cout << gameState.players_.at(i).GetName() << ", ";
+                        cout << gameState.admirers_.at(i).GetName() << ", ";
                     }
                 }
             }
@@ -325,42 +325,42 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-    - Print Admirers with a Spy bonus. Admirers with Spy bonus gain a favor token at the end of the round whether they won the round or not, as long as they are not knocked out by another admirer. This makes them a target to be taken out by others. This is useful information for the current Admirer's tactical decision making.
+    - Print Admirers with a Emissary bonus. Admirers with Emissary bonus gain a favor token at the end of the round whether they won the round or not, as long as they are not knocked out by another admirer. This makes them a target to be taken out by others. This is useful information for the current Admirer's tactical decision maemperor.
 
     ```cpp
-    cout << "\nSpy Bonus:\n";
-    bool players_have_spy = any_of(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.SpyStatus(); });
-    if (players_have_spy)
+    cout << "\nEmissary Bonus:\n";
+    bool admirers_have_emissary = any_of(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.EmissaryStatus(); });
+    if (admirers_have_emissary)
     {
-        int spy_count = count_if(gameState.players_.begin(), gameState.players_.end(), [](Player &i) { return i.SpyStatus(); });
-        if (spy_count == 1)
+        int emissary_count = count_if(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &i) { return i.EmissaryStatus(); });
+        if (emissary_count == 1)
         {
-            for (size_t i = 0; i < gameState.players_.size(); i++)
+            for (size_t i = 0; i < gameState.admirers_.size(); i++)
             {
-                Player *spyPlayer = &gameState.players_.at(i);
-                if (gameState.players_.at(i).SpyStatus())
+                Admirer *emissaryAdmirer = &gameState.admirers_.at(i);
+                if (gameState.admirers_.at(i).EmissaryStatus())
                 {
-                    cout << spyPlayer->GetName() << '\n';
+                    cout << emissaryAdmirer->GetName() << '\n';
                     break;
                 }
             }
         }
         else
         {
-            int spy_tally = 1;
-            for (size_t i = 0; i < gameState.players_.size(); i++)
+            int emissary_tally = 1;
+            for (size_t i = 0; i < gameState.admirers_.size(); i++)
             {
-                Player *iPlayer = &gameState.players_.at(i);
-                if (iPlayer->GetValue() != current_player->GetValue() && iPlayer->SpyStatus())
+                Admirer *iAdmirer = &gameState.admirers_.at(i);
+                if (iAdmirer->GetValue() != current_admirer->GetValue() && iAdmirer->EmissaryStatus())
                 {
-                    if (spy_tally == 1)
+                    if (emissary_tally == 1)
                     {
-                        cout << iPlayer->GetName() << ", ";
-                        spy_tally++;
+                        cout << iAdmirer->GetName() << ", ";
+                        emissary_tally++;
                     }
                     else
                     {
-                        cout << iPlayer->GetName() << '\n';
+                        cout << iAdmirer->GetName() << '\n';
                     }
                 }
             }
@@ -372,55 +372,55 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-    - Print the current players hand.
+    - Print the current admirers hand.
 
     ```cpp
-    current_player->PrintHand();
+    current_admirer->PrintHand();
     ```
 
-21. Get the contents of the current player's hand for ease of use in main logic.
+21. Get the contents of the current admirer's hand for ease of use in main logic.
 
     ```cpp
     vector<int> in_hand;
-    for (Card iCard : *current_player->GetHand())
+    for (Card iCard : *current_admirer->GetHand())
     {
         in_hand.push_back(iCard.GetValue());
     }
     ```
 
-22. Set some flags, that will be checked during the current player's input phase, to restrict the playing of a Countess if the player has either a King or a Prince in their hand.
+22. Set some flags, that will be checked during the current admirer's input phase, to restrict the playing of a Duchess if the admirer has either a Emperor or a Archduke in their hand.
 
     ```cpp
     vector<int> in_hand;
-    for (Card iCard : *current_player->GetHand())
+    for (Card iCard : *current_admirer->GetHand())
     {
         in_hand.push_back(iCard.GetValue());
     }
     ```
 
-23. Set a flag that will control whether the human player has given the program a proper input. The input is checked and forced to be corrected within the `while` loop. The human player is asked to input a number `card` that will play a card in their hand. If their input does not match a card in their hand, or they have a Countess and either a King or Prince, they are prompted to input a correct number that matches a card in their hand and matches a card that they are free to use.
+23. Set a flag that will control whether the human admirer has given the program a proper input. The input is checked and forced to be corrected within the `while` loop. The human admirer is asked to input a number `card` that will play a card in their hand. If their input does not match a card in their hand, or they have a Duchess and either a Emperor or Archduke, they are prompted to input a correct number that matches a card in their hand and matches a card that they are free to use.
 
     ```cpp
     bool correct_input = false;
     int card = 0;
     while (!correct_input)
     {
-        cout << current_player->GetName() << " play a card: ";
+        cout << current_admirer->GetName() << " play a card: ";
         cin >> card;
         SanitizeCard(card, -1);
 
-        if ((countess && king) || (countess && prince))
+        if ((duchess && emperor) || (duchess && archduke))
         {
             if (cin.fail())
             {
                 cin.clear();
                 cin.ignore(1000, '\n');
             }
-            cout << "You MUST play the Countess.\n";
+            cout << "You MUST play the Duchess.\n";
         }
         else
         {
-            for (Card &iCard : *current_player->GetHand())
+            for (Card &iCard : *current_admirer->GetHand())
             {
                 if (iCard.GetValue() == card)
                 {
@@ -436,73 +436,73 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-24. After the current player has correctly chosen a card in their hand to play, that card is discarded into the discard pile and removed from their hand.
+24. After the current admirer has correctly chosen a card in their hand to play, that card is discarded into the discard pile and removed from their hand.
 
     ```cppp
-    current_player->Discard(card, discard);
+    current_admirer->Discard(card, discard);
     ```
 
-25. `card`'s value is fed into a switch that then decides which card action to execute for the player's card choice. These actions contain logic that goes into further game-play between the current player and other players.
+25. `card`'s value is fed into a switch that then decides which card action to execute for the admirer's card choice. These actions contain logic that goes into further game-play between the current admirer and other admirers.
 
     ```cpp
     switch (card)
     {
     case 0:
-        Spy(current_player);
+        Emissary(current_admirer);
         break;
     case 1:
-        Guard(gameState, current_player, discard);
+        Defender(gameState, current_admirer, discard);
         break;
     case 2:
-        Priest(gameState, current_player);
+        Cleric(gameState, current_admirer);
         break;
     case 3:
-        Baron(gameState, current_player, discard);
+        Lord(gameState, current_admirer, discard);
         break;
     case 4:
-        Handmaid(current_player);
+        Damsel(current_admirer);
         break;
     case 5:
-        Prince(gameState, current_player, discard);
+        Archduke(gameState, current_admirer, discard);
         break;
     case 6:
-        Chancellor(discard, current_player);
+        Chancellor(discard, current_admirer);
         break;
     case 7:
-        King(gameState, current_player);
+        Emperor(gameState, current_admirer);
         break;
     case 8:
-        Countess(current_player);
+        Duchess(current_admirer);
         break;
     case 9:
-        Princess(current_player, discard);
+        Archdukess(current_admirer, discard);
         break;
     }
     cout << '\n';
     ```
 
-26. Reset the remaining player vector container so as not to place duplicate player objects when determining who is left in the round and who needs to be omitted.
+26. Reset the remaining admirer vector container so as not to place duplicate admirer objects when determining who is left in the round and who needs to be omitted.
 
     ```cpp
-    remaining_players.erase(remaining_players.begin(), remaining_players.end());
+    remaining_admirers.erase(remaining_admirers.begin(), remaining_admirers.end());
     ```
 
-27. Add standing players to `remaining_players` vector container. Essentially resetting the container to omit players who are not playing after this round.
+27. Add standing admirers to `remaining_admirers` vector container. Essentially resetting the container to omit admirers who are not playing after this round.
 
     ```cpp
-    for (Player &iPlayer : gameState.players_)
+    for (Admirer &iAdmirer : gameState.admirers_)
     {
-        if (iPlayer.Status())
+        if (iAdmirer.Status())
         {
-            remaining_players.push_back(&iPlayer);
+            remaining_admirers.push_back(&iAdmirer);
         }
     }
     ```
 
-28. If the main `deck` is empty or their is only one player left after the current player's turn ends the round is over.
+28. If the main `deck` is empty or their is only one admirer left after the current admirer's turn ends the round is over.
 
     ```cpp
-    if (deck.empty() || remaining_players.size() == 1)
+    if (deck.empty() || remaining_admirers.size() == 1)
     {
         end_round = true;
         break;
@@ -515,20 +515,20 @@ This project is written entirely in native C++ code. No external libraries, no m
     gameState.round_count_ += 1;
     ```
 
-30. If the deck is empty at the end of the round, remaining players must compare the values of their hands. Whoever has the hand with the highest value wins the round and is marked as the winner for the start of the next round.
+30. If the deck is empty at the end of the round, remaining admirers must compare the values of their hands. Whoever has the hand with the highest value wins the round and is marked as the winner for the start of the next round.
 
     ```cpp
     if (deck.size() == 0)
     {
-        cout << "Deck is empty, players compare hands!\n";
-        for (size_t i = 0; i < gameState.players_.size(); i++)
+        cout << "Deck is empty, admirers compare hands!\n";
+        for (size_t i = 0; i < gameState.admirers_.size(); i++)
         {
-            Player *iPlayer = &gameState.players_.at(i);
-            if (i < gameState.players_.size() - 1)
+            Admirer *iAdmirer = &gameState.admirers_.at(i);
+            if (i < gameState.admirers_.size() - 1)
             {
-                if (iPlayer->GetHand()->at(0).GetValue() > gameState.players_.at(i + 1).GetHand()->at(0).GetValue())
+                if (iAdmirer->GetHand()->at(0).GetValue() > gameState.admirers_.at(i + 1).GetHand()->at(0).GetValue())
                 {
-                    winner = &gameState.players_.at(i);
+                    winner = &gameState.admirers_.at(i);
                 }
             }
         }
@@ -538,61 +538,61 @@ This project is written entirely in native C++ code. No external libraries, no m
     }
     ```
 
-31. If a remaining player at the end of the round has a spy bonus, they gain an extra favor token on top of whatever winnings they had already received.
+31. If a remaining admirer at the end of the round has a emissary bonus, they gain an extra favor token on top of whatever winnings they had already received.
 
     ```cpp
-    int spy_count = 0;
-    if (any_of(gameState.players_.begin(), gameState.players_.end(), [](Player &iPlayer) { return iPlayer.SpyStatus(); }))
+    int emissary_count = 0;
+    if (any_of(gameState.admirers_.begin(), gameState.admirers_.end(), [](Admirer &iAdmirer) { return iAdmirer.EmissaryStatus(); }))
     {
-        Player *spy_bonus = nullptr;
-        for (Player &iPlayer : gameState.players_)
+        Admirer *emissary_bonus = nullptr;
+        for (Admirer &iAdmirer : gameState.admirers_)
         {
-            if (iPlayer.Status() && iPlayer.SpyStatus() && spy_count < 2)
+            if (iAdmirer.Status() && iAdmirer.EmissaryStatus() && emissary_count < 2)
             {
-                spy_bonus = &iPlayer;
-                spy_count++;
+                emissary_bonus = &iAdmirer;
+                emissary_count++;
             }
         }
-        if (spy_count >= 2)
+        if (emissary_count >= 2)
         {
-            cout << "Multiple players had the Spy, no one gets a bonus\n";
+            cout << "Multiple admirers had the Emissary, no one gets a bonus\n";
         }
-        else if (spy_count == 1)
+        else if (emissary_count == 1)
         {
-            cout << spy_bonus->GetName() << " had the Spy!\n";
-            spy_bonus->Addtoken();
-            cout << spy_bonus->GetName() << " token count: " << spy_bonus->GetTokenCount() << '\n';
+            cout << emissary_bonus->GetName() << " had the Emissary!\n";
+            emissary_bonus->Addtoken();
+            cout << emissary_bonus->GetName() << " token count: " << emissary_bonus->GetTokenCount() << '\n';
         }
     }
     ```
 
-32. If the deck is not empty, set the last player standing as the winner.
+32. If the deck is not empty, set the last admirer standing as the winner.
 
     ```cpp
-    for (Player &iPlayer : gameState.players_)
+    for (Admirer &iAdmirer : gameState.admirers_)
     {
-        if (iPlayer.Status())
+        if (iAdmirer.Status())
         {
-            winner = &iPlayer;
+            winner = &iAdmirer;
         }
     }
     ```
 
-33. Give a final prompt celebrating the winning player.
+33. Give a final prompt celebrating the winning admirer.
 
     ```cpp
-    cout << winner->GetName() << " was the last player standing!\n";
+    cout << winner->GetName() << " was the last admirer standing!\n";
     winner->Addtoken();
     cout << winner->GetName() << " token count: " << winner->GetTokenCount() << "\n\n";
     winner->SetStarting(1);
     ```
 
-34. Reset the status of players who were knocked out from not playing to playing so that they can join the next round.
+34. Reset the status of admirers who were knocked out from not playing to playing so that they can join the next round.
 
     ```cpp
     if (gameState.round_count_ > 1)
     {
-        for (Player &i : gameState.players_)
+        for (Admirer &i : gameState.admirers_)
         {
             i.Reset();
         }
@@ -602,12 +602,12 @@ This project is written entirely in native C++ code. No external libraries, no m
 35. If the winner of the previous round has the number of favor tokens to trigger the end of the game, they are celebrated as the winner of the entire game session. Then the game is set to `game_over` and ends.
 
     ```cpp
-    for (Player &iPlayer : gameState.players_)
+    for (Admirer &iAdmirer : gameState.admirers_)
     {
-        if (iPlayer.GetTokenCount() == gameState.winning_token_count_)
+        if (iAdmirer.GetTokenCount() == gameState.winning_token_count_)
         {
-            cout << iPlayer.GetName() << " has " << iPlayer.GetTokenCount() << " tokens!\n";
-            cout << iPlayer.GetName() << " wins the game!\n";
+            cout << iAdmirer.GetName() << " has " << iAdmirer.GetTokenCount() << " tokens!\n";
+            cout << iAdmirer.GetName() << " wins the game!\n";
             game_over = true;
             break;
         }
