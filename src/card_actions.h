@@ -18,20 +18,20 @@ using std::vector;
 
 class GameState;
 class InputCheck;
-class Player;
+class Admirer;
 class Deck;
 class Card;
 
 // actions
-void Spy(Player *player);
-void Guard(GameState &state, Player *aggressor, vector<Card> &deck);
-void Priest(GameState &state, Player *aggressor);
-void Baron(GameState &state, Player *aggressor, vector<Card> &deck);
-void Handmaid(Player *player);
-void Prince(GameState &state, Player *player, vector<Card> &deck);
-void Chancellor(vector<Card> &deck, Player *player);
-void King(GameState &state, Player *aggressor);
-void Countess(Player *player);
-void Princess(Player *player, vector<Card> &deck);
+void Emissary(Admirer *admirer);
+void Defender(GameState &state, Admirer *aggressor, vector<Card> &deck);
+void Cleric(GameState &state, Admirer *aggressor);
+void Lord(GameState &state, Admirer *aggressor, vector<Card> &deck);
+void Damsel(Admirer *admirer);
+void Archduke(GameState &state, Admirer *admirer, vector<Card> &deck);
+void Adjudicator(vector<Card> &deck, Admirer *admirer);
+void Emperor(GameState &state, Admirer *aggressor);
+void Duchess(Admirer *admirer);
+void GrandDuchess(Admirer *admirer, vector<Card> &deck);
 
 #endif // !CARD_ACTIONS_h

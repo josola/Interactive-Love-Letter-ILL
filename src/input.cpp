@@ -1,6 +1,6 @@
 #include "input.h"
 #include "game_state.h"
-#include "player.h"
+#include "admirer.h"
 
 #include <cassert>
 #include <iostream>
@@ -58,7 +58,7 @@ void SanitizeCard(int &target, const int originator)
 
 const bool CheckTarget(const int input, const GameState &state)
 {
-    if (input < 1 || input > state.players_.size() || cin.fail())
+    if (input < 1 || input > state.admirers_.size() || cin.fail())
     {
         return false;
     }
@@ -70,19 +70,19 @@ const bool CheckTarget(const int input, const GameState &state)
 
 void FixTarget(int &input, const GameState &state)
 {
-    while (input < 1 || input > state.players_.size())
+    while (input < 1 || input > state.admirers_.size())
     {
         if (cin.fail())
         {
             cin.clear();
             cin.ignore(100, '\n');
         }
-        cout << "Number must be between 1 and " << state.players_.size() << '\n';
+        cout << "Number must be between 1 and " << state.admirers_.size() << '\n';
         cin >> input;
     }
 }
 
-void SanitizeTarget(int &target, const GameState &state, const int card, Player *aggressor)
+void SanitizeTarget(int &target, const GameState &state, const int card, Admirer *aggressor)
 {
     assert(card >= 0 && card <= 9);
     
@@ -100,17 +100,17 @@ void SanitizeTarget(int &target, const GameState &state, const int card, Player 
     }
 }
 
-const bool OpponentsProtected(Player *aggressor, GameState &state)
+const bool OpponentsProtected(Admirer *aggressor, GameState &state)
 {
     int protected_count = 0;
-    for (Player &iPlayer : state.players_)
+    for (Admirer &iPlayer : state.admirers_)
     {
         if (iPlayer.ProtectionStatus() && (iPlayer.GetValue() != aggressor->GetValue()))
         {
             protected_count++;
         }
     }
-    if (protected_count == state.players_.size() - 1)
+    if (protected_count == state.admirers_.size() - 1)
     {
         return true;
     }
@@ -120,16 +120,16 @@ const bool OpponentsProtected(Player *aggressor, GameState &state)
     }
 }
 
-Player *GetTarget(Player *aggressor, GameState &state, const int card)
+Admirer *GetTarget(Admirer *aggressor, GameState &state, const int card)
 {
     assert(card >= 0 && card <= 9);
 
-    Player *target_player = nullptr;
+    Admirer *target_player = nullptr;
     
     bool protected_target = true;
     while (protected_target)
     {
-        cout << aggressor->GetName() << " choose a target player: ";
+        cout << aggressor->GetName() << " choose a target admirer: ";
         
         int target = 0;
         cin >> target;

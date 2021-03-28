@@ -1,16 +1,16 @@
-//===-- player.h - Player class definition -------*- C++ -*-===//
+//===-- admirer.h - Admirer class definition -------*- C++ -*-===//
 //
 // This software uses the MIT license.
 // See https://mit-license.org/ for license information.
 //
 //===----------------------------------------------------------------------===//
 ///
-/// This file determines the capabilities of a Player.
+/// This file determines the capabilities of a Admirer.
 ///
 //===----------------------------------------------------------------------===//
 
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ADMIRER_H
+#define ADMIRER_H
 
 #include "converter.h"
 #include "reference.h"
@@ -22,10 +22,10 @@ class Deck;
 class InputCheck;
 class Deck;
 
-class Player
+class Admirer
 {
 public:
-  Player(const string name, const int value, const Reference &reference);
+  Admirer(const string name, const int value, const Reference &reference);
 
   // getters
   const bool ProtectionStatus() const;
@@ -34,13 +34,13 @@ public:
   const bool Status() const;
   const int GetValue() const;
   const int GetTokenCount() const;
-  const bool SpyStatus() const;
+  const bool HasEmissaryBonus() const;
   Converter* GetConversion();
   const bool Starting() const;
 
   // setters
   void Draw(const Card obj);
-  void GainSpy();
+  void GainEmissaryBonus();
   void Reset();
   void SetProtection(const bool state);
   void Discard(const int choice, vector<Card> &deck);

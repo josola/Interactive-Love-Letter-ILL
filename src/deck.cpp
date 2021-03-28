@@ -11,35 +11,35 @@ void Build(vector<Card> &input)
 {
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("SPY", 0, "REF"));
+        input.push_back(Card("EMISSARY", 0, "REF"));
     }
     for (int i = 0; i < 6; i++)
     {
-        input.push_back(Card("GUARD", 1, "REF"));
+        input.push_back(Card("DEFENDER", 1, "REF"));
     }
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("PRIEST", 2, "REF"));
+        input.push_back(Card("CLERIC", 2, "REF"));
     }
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("BARON", 3, "REF"));
+        input.push_back(Card("LORD", 3, "REF"));
     }
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("HANDMAID", 4, "REF"));
+        input.push_back(Card("DAMSEL", 4, "REF"));
     }
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("PRINCE", 5, "REF"));
+        input.push_back(Card("ARCHDUKE", 5, "REF"));
     }
     for (int i = 0; i < 2; i++)
     {
-        input.push_back(Card("CHANCELLOR", 6, "REF"));
+        input.push_back(Card("ADJUDICATOR", 6, "REF"));
     }
-    input.push_back(Card("KING", 7, "REF"));
-    input.push_back(Card("COUNTESS", 8, "REF"));
-    input.push_back(Card("PRINCESS", 9, "REF"));
+    input.push_back(Card("EMPEROR", 7, "REF"));
+    input.push_back(Card("DUCHESS", 8, "REF"));
+    input.push_back(Card("GRAND DUCHESS", 9, "REF"));
 }
 
 void Mix(vector<Card> &input)

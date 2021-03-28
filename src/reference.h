@@ -26,16 +26,16 @@ public:
 
 protected:
   string reference[10] = {
-      "9-Princess (x1): Out of the round if you play/discard.",
-      "8-Countess (x1): Must play if you have King or Prince.",
-      "7-King (x1): Trade hands.",
-      "6-Chancellor (x2): Draw & return 2 cards.",
-      "5-Prince (x2): Discard a hand & redraw.",
-      "4-Handmaid (x2): Immune to other cards until your next turn.",
-      "3-Baron (x2): Compare hands.",
-      "2-Priest (x2): Look at a hand.",
-      "1-Guard (x6): Guess a hand.",
-      "0-Spy (x2): Gain favor if no one else plays/discards a Spy.",
+      "9-Grand Duchess (x1): Out of the round if you play/discard.",
+      "8-Duchess (x1): Must play if you have Emperor or Archduke.",
+      "7-Emperor (x1): Trade hands.",
+      "6-Adjudicator (x2): Draw & return 2 cards.",
+      "5-Archduke (x2): Discard a hand & redraw.",
+      "4-Damsel (x2): Immune to other cards until your next turn.",
+      "3-Lord (x2): Compare hands.",
+      "2-Cleric (x2): Look at a hand.",
+      "1-Defender (x6): Guess a hand.",
+      "0-Emissary (x2): Gain favor if no one else plays/discards a Emissary.",
   };
 };
 

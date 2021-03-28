@@ -14,14 +14,14 @@
 
 #include <vector>
 
-class Player;
+class Admirer;
 class GameState;
 
 using std::vector;
 
 struct Converter
 {
-	Player* NumPlayer(int num, GameState& state);
+	Admirer* NumPlayer(int num, GameState& state);
 };
 
 #endif // !CONVERTER_h

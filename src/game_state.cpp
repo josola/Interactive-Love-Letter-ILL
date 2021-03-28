@@ -1,14 +1,14 @@
 #include "game_state.h"
 #include "reference.h"
-#include "player.h"
+#include "admirer.h"
 
 #include <cassert>
 
 using std::to_string;
 
-void GameState::InsertPlayer(Player player)
+void GameState::InsertPlayer(Admirer admirer)
 {
-	players_.push_back(player);
+	admirers_.push_back(admirer);
 }
 
 void GameState::SetPlayers(int count)
@@ -21,8 +21,8 @@ void GameState::SetPlayers(int count)
         {
             for (int i = 0; i < 2; i++)
             {
-                string name = "PLAYER[" + to_string(i + 1) + "]";
-                InsertPlayer(Player(name, i + 1, reference));
+                string name = "ADMIRER[" + to_string(i + 1) + "]";
+                InsertPlayer(Admirer(name, i + 1, reference));
             }
             winning_token_count_ = 6;
             break;
@@ -31,8 +31,8 @@ void GameState::SetPlayers(int count)
         {
             for (int i = 0; i < 3; i++)
             {
-                string name = "PLAYER[" + to_string(i + 1) + "]";
-                InsertPlayer(Player(name, i + 1, reference));
+                string name = "ADMIRER[" + to_string(i + 1) + "]";
+                InsertPlayer(Admirer(name, i + 1, reference));
             }
             winning_token_count_ = 5;
             break;
@@ -41,8 +41,8 @@ void GameState::SetPlayers(int count)
         {
             for (int i = 0; i < 4; i++)
             {
-                string name = "PLAYER[" + to_string(i + 1) + "]";
-                InsertPlayer(Player(name, i + 1, reference));
+                string name = "ADMIRER[" + to_string(i + 1) + "]";
+                InsertPlayer(Admirer(name, i + 1, reference));
             }
             winning_token_count_ = 4;
             break;
@@ -51,8 +51,8 @@ void GameState::SetPlayers(int count)
         {
             for (int i = 0; i < 5; i++)
             {
-                string name = "PLAYER[" + to_string(i + 1) + "]";
-                InsertPlayer(Player(name, i + 1, reference));
+                string name = "ADMIRER[" + to_string(i + 1) + "]";
+                InsertPlayer(Admirer(name, i + 1, reference));
             }
             winning_token_count_ = 3;
             break;
@@ -61,8 +61,8 @@ void GameState::SetPlayers(int count)
         {
             for (int i = 0; i < 6; i++)
             {
-                string name = "PLAYER[" + to_string(i + 1) + "]";
-                InsertPlayer(Player(name, i + 1, reference));
+                string name = "ADMIRER[" + to_string(i + 1) + "]";
+                InsertPlayer(Admirer(name, i + 1, reference));
             }
             winning_token_count_ = 3;
             break;

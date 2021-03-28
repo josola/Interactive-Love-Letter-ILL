@@ -1,16 +1,16 @@
 #include "converter.h"
-#include "player.h"
+#include "admirer.h"
 #include "game_state.h"
 
 #include <cassert>
 
-Player* Converter::NumPlayer(int num, GameState& state)
+Admirer* Converter::NumPlayer(int num, GameState& state)
 {
 	assert(num >= 1 && num <= 6);
 
-	Player* output = nullptr;
+	Admirer* output = nullptr;
 
-	for (Player& iPlayer : state.players_)
+	for (Admirer& iPlayer : state.admirers_)
 	{
 		if (iPlayer.GetValue() == num)
 		{
