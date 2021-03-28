@@ -1,6 +1,6 @@
 # Missive 🖥️
 
-Missive is an open source, text-based, single-admirer, card game based on the popular game Love Letter. You play as an admirer of the Emperor's daughter The Grand Duchess of Mannheim. But you aren't the only one fighting for her father's seal of approval, and her heart. Other admirers are vying for her attention alongside you. This is unacceptable, you must take action. Knock out your opponents by utilizing the specialized skills of your entourage: Defender, Cleric, Lord, Damsel, Archduke, Emperor, Duchess, Emissary, and The Grand Duchess herself. Knock out the other admirers to be the last one standing and you shall win the heart of the Grand Duchess!
+Missive is an open source, text-based, single-admirer, card game based on the popular game Love Letter. You play as an admirer of the Emperor's daughter The Grand Duchess of Mannheim. But you aren't the only one fighting for her father's seal of approval, and her heart. Other admirers are vying for her attention alongside you. This is unacceptable, you must take action. Knock out your opponents by utilizing the specialized skills of your entourage: Emissary, Defender, Cleric, Lord, Damsel, Adjudicator, Archduke, Emperor, Duchess, and The Grand Duchess herself. Knock out the other admirers to be the last one standing and you shall win the heart of the Grand Duchess!
 
 ## Project Structure
 
