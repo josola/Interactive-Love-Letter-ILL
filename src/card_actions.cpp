@@ -1,7 +1,7 @@
 #include "card_actions.h"
 #include "input.h"
 #include "game_state.h"
-#include "admirer.h"
+#include "admirer.hpp"
 #include "deck.h"
 
 #include <iostream>

@@ -1,6 +1,6 @@
 #include "input.h"
 #include "game_state.h"
-#include "admirer.h"
+#include "admirer.hpp"
 
 #include <cassert>
 #include <iostream>

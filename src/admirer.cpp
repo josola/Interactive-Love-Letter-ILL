@@ -1,6 +1,8 @@
-#include "admirer.h"
-#include "deck.h"
-#include "card.h"
+/*
+ * Implementation for the admirer class.
+ * (c) 2019-2021 Jordan Sola. All rights reserved. (MIT License)
+ * Written by Jordan Sola 2019-2021
+ */
 
 #include <algorithm>
 #include <iostream>
@@ -8,158 +10,141 @@
 #include <string>
 #include <vector>
 
-using std::cout;
-using std::string;
-using std::vector;
+#include "admirer.hpp"
+#include "deck.h"
+#include "card.h"
 
-Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference){};
+Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference) {};
 
-// getters
-const bool Admirer::ProtectionStatus() const
-{
-  return handmaid_;
+const bool Admirer::ProtectionStatus() const {
+	return handmaid_;
 }
 
-const string Admirer::GetName() const
-{
-  return name_;
+const string Admirer::GetName() const {
+	return name_;
 }
 
-vector<Card>* Admirer::GetHand()
-{
-  return &hand_;
+vector<Card>* Admirer::GetHand() {
+	return &hand_;
 }
 
-const bool Admirer::Status() const
-{
-  return playing_;
+const bool Admirer::Status() const {
+	return playing_;
 }
 
-const int Admirer::GetValue() const
-{
-  return value_;
+const int Admirer::GetValue() const {
+	return value_;
 }
 
-const int Admirer::GetTokenCount() const
-{
-  return token_count_;
+const int Admirer::GetTokenCount() const {
+	return token_count_;
 }
 
-const bool Admirer::HasEmissaryBonus() const
-{
-  return spy_;
+const bool Admirer::HasEmissaryBonus() const {
+	return spy_;
 }
 
-Converter *Admirer::GetConversion()
-{
-  return &convert_;
+Converter *Admirer::GetConversion() {
+	return &convert_;
 }
 
-const bool Admirer::Starting() const
-{
-  return starting_;
+const bool Admirer::Starting() const {
+	return starting_;
 }
 
-// setters
-void Admirer::Draw(const Card obj)
-{
-  hand_.push_back(obj);
+void Admirer::Draw(const Card obj) {
+	hand_.push_back(obj);
 }
 
-void Admirer::SetProtection(const bool state)
-{
-  handmaid_ = state;
+void Admirer::SetProtection(const bool state) {
+	handmaid_ = state;
 }
 
-void Admirer::GainEmissaryBonus()
-{
-  spy_ = true;
+void Admirer::GainEmissaryBonus() {
+	spy_ = true;
 }
 
-void Admirer::Reset()
-{
-  hand_.clear();
-  handmaid_ = false;
-  spy_ = false;
-  playing_ = true;
+void Admirer::Reset() {
+
+	hand_.clear();
+	handmaid_ = false;
+	spy_ = false;
+	playing_ = true;
+
 }
 
-void Admirer::Discard(const int choice, vector<Card> &deck)
-{
-  for (Card &iCard : hand_)
-  {
-    if (iCard.GetValue() == choice)
-    {
-      deck.push_back(iCard);
-      RemoveCard(iCard.GetValue());
-      break;
-    }
-  }
+void Admirer::Discard(const int choice, vector<Card> &deck) {
+
+	for (Card &iCard : hand_) {
+
+		if (iCard.GetValue() == choice) {
+
+			deck.push_back(iCard);
+			RemoveCard(iCard.GetValue());
+
+			break;
+
+		}
+
+	}
+
 }
 
-void Admirer::DiscardHand(vector<Card> &deck)
-{
-  for (Card &iCard : hand_)
-  {
-    Discard(iCard.GetValue(), deck);
-  }
+void Admirer::DiscardHand(vector<Card> &deck) {
+	for (Card &iCard : hand_)
+		Discard(iCard.GetValue(), deck);
 }
 
-void Admirer::Addtoken()
-{
-  token_count_++;
+void Admirer::Addtoken() {
+	token_count_++;
 }
 
-void Admirer::Winner(const bool state)
-{
-  winner_ = state;
+void Admirer::Winner(const bool state) {
+	winner_ = state;
 }
 
-void Admirer::RemoveCard(const int card)
-{
-  for (size_t i = 0; i < hand_.size(); i++)
-  {
-    if (hand_.at(i).GetValue() == card)
-    {
-      hand_.erase(hand_.begin() + i);
-      break;
-    }
-  }
+void Admirer::RemoveCard(const int card) {
+
+	for (size_t i = 0; i < hand_.size(); i++) {
+
+		if (hand_.at(i).GetValue() == card) {
+			hand_.erase(hand_.begin() + i);
+			break;
+		}
+
+	}
+
 }
 
-void Admirer::Out(vector<Card> &deck)
-{
-  this->DiscardHand(deck);
-  this->Reset();
-  this->playing_ = false;
+void Admirer::Out(vector<Card> &deck) {
+
+	this->DiscardHand(deck);
+	this->Reset();
+	this->playing_ = false;
+
 }
 
-void Admirer::SetStarting(const bool state)
-{
-  starting_ = state;
+void Admirer::SetStarting(const bool state) {
+	starting_ = state;
 }
 
-// printers
-void Admirer::PrintHand() const
-{
-  cout << '\n' << this->GetName() << " hand:\n";
+void Admirer::PrintHand() const {
 
-  if (!hand_.empty())
-  {
-    for (size_t i = 0; i < hand_.size(); i++)
-    {
-      if (i < hand_.size() - 1)
-      {
-        cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << ", ";
-      }
-      else
-      {
-        cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << "\n\n";
-      }
-    }
-  }
-  else
-  {
-    cout << "EMPTY\n";
-  }
+	std::cout << std::endl << this->GetName() << " hand:" << std::endl;
+
+	if (!hand_.empty()) {
+
+		for (size_t i = 0; i < hand_.size(); i++) {
+
+			if (i < hand_.size() - 1)
+				std::cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << ", ";
+			else
+				std::cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << std::endl << std::endl;
+				
+		}
+
+	}
+	else
+		std::cout << "EMPTY\n";
+
 }

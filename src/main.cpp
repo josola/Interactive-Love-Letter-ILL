@@ -1,5 +1,5 @@
 #include "deck.h"
-#include "admirer.h"
+#include "admirer.hpp"
 #include "input.h"
 #include "reference.h"
 #include "game_state.h"

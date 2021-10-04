@@ -1,5 +1,5 @@
 #include "converter.h"
-#include "admirer.h"
+#include "admirer.hpp"
 #include "game_state.h"
 
 #include <cassert>

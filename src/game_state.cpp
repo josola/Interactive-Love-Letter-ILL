@@ -1,6 +1,6 @@
 #include "game_state.h"
 #include "reference.h"
-#include "admirer.h"
+#include "admirer.hpp"
 
 #include <cassert>
 
