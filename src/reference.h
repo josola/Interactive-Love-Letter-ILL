@@ -13,7 +13,7 @@
 #ifndef REFERENCE_H
 #define REFERENCE_H
 
-#include "card.h"
+#include "card.hpp"
 #include <string>
 
 using std::string;

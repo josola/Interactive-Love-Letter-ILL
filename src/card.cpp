@@ -1,37 +1,35 @@
-#include "card.h"
+/*
+ * Implementation for the card class.
+ * (c) 2019-2021 Jordan Sola. All rights reserved. (MIT License)
+ * Written by Jordan Sola 2019-2021
+ */
+
 #include <iostream>
 
-using std::cout;
-using std::endl;
+#include "card.hpp"
 
-Card::Card(const string name, const int value, const string description) : name_(name), value_(value), description_(description) {}
+Card::Card(const std::string name, const int value, const std::string description) : name_(name), value_(value), description_(description) {};
 
-const string Card::GetName() const
-{
-    return name_;
+const std::string Card::GetName() const {
+	return name_;
 }
 
-const string Card::GetDescription() const
-{
-    return description_;
+const std::string Card::GetDescription() const {
+	return description_;
 }
 
-const int Card::GetValue() const
-{
-    return value_;
+const int Card::GetValue() const {
+	return value_;
 }
 
-void Card::PrintName() const
-{
-    cout << name_;
+void Card::PrintName() const {
+	std::cout << name_;
 }
 
-void Card::PrintValue() const
-{
-    cout << value_;
+void Card::PrintValue() const {
+	std::cout << value_;
 }
 
-void Card::PrintDescription() const
-{
-    cout << description_;
+void Card::PrintDescription() const {
+	std::cout << description_;
 }

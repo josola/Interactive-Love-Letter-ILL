@@ -12,7 +12,7 @@
 
 #include "admirer.hpp"
 #include "deck.h"
-#include "card.h"
+#include "card.hpp"
 
 Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference) {};
 

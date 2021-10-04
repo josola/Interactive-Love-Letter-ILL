@@ -1,5 +1,5 @@
 #include "deck.h"
-#include "card.h"
+#include "card.hpp"
 #include <cassert>
 #include <chrono>
 #include <algorithm>
