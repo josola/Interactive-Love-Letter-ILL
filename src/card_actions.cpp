@@ -10,7 +10,7 @@
 
 #include "card_actions.hpp"
 #include "input.h"
-#include "game_state.h"
+#include "game_state.hpp"
 #include "admirer.hpp"
 #include "deck.hpp"
 
@@ -19,7 +19,7 @@ void Emissary(Admirer *player) {
 	player->GainEmissaryBonus();
 }
 
-void Defender(GameState &state, Admirer *aggressor, vector<Card> &deck) {
+void Defender(GameState &state, Admirer *aggressor, std::vector<Card> &deck) {
 	
 	if (OpponentsProtected(aggressor, state)) {
 		std::cout << "All players have Damsel protection!" << std::endl;
@@ -64,7 +64,7 @@ void Cleric(GameState &state, Admirer *aggressor) {
 	
 }
 
-void Lord(GameState &state, Admirer *aggressor, vector<Card> &deck) {
+void Lord(GameState &state, Admirer *aggressor, std::vector<Card> &deck) {
 	
 	if (OpponentsProtected(aggressor, state)) {
 		std::cout << "All players have Damsel protection!" << std::endl;
@@ -73,8 +73,8 @@ void Lord(GameState &state, Admirer *aggressor, vector<Card> &deck) {
 	
 	Admirer *target = GetTarget(aggressor, state, 3);
 	
-	vector<Card>* target_hand = target->GetHand();
-	vector<Card>* aggressor_hand = aggressor->GetHand();
+	std::vector<Card>* target_hand = target->GetHand();
+	std::vector<Card>* aggressor_hand = aggressor->GetHand();
 	
 	if (aggressor_hand->at(0).GetValue() > target_hand->at(0).GetValue()) {
 		std::cout << aggressor->GetName() << " had the higher card!" << std::endl;
@@ -94,14 +94,14 @@ void Damsel(Admirer *player) {
 	player->SetProtection(1);
 }
 
-void Archduke(GameState &state, Admirer *aggressor, vector<Card> &deck) {
+void Archduke(GameState &state, Admirer *aggressor, std::vector<Card> &deck) {
 	
 	if (OpponentsProtected(aggressor, state)) {
 		
 		std::cout << "All players have Damsel protection!" << std::endl;
 		std::cout << "Archduke applies to you!" << std::endl;
 		
-		vector<Card> *hand = aggressor->GetHand();
+		std::vector<Card> *hand = aggressor->GetHand();
 		
 		if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
 			GrandDuchess(aggressor, deck);
@@ -128,7 +128,7 @@ void Archduke(GameState &state, Admirer *aggressor, vector<Card> &deck) {
 		std::cin >> discard;
 		SanitizeCharacter(discard, 'd');
 		
-		vector<Card> *hand = aggressor->GetHand();
+		std::vector<Card> *hand = aggressor->GetHand();
 		
 		if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
 			GrandDuchess(aggressor, deck);
@@ -145,7 +145,7 @@ void Archduke(GameState &state, Admirer *aggressor, vector<Card> &deck) {
 		
 		std::cout << target->GetName() << " discards their hand!" << std::endl;
 		
-		vector<Card> *hand = target->GetHand();
+		std::vector<Card> *hand = target->GetHand();
 		
 		if (any_of(hand->begin(), hand->end(), [](const Card &iCard) { return iCard.GetValue() == 9; }))
 			GrandDuchess(target, deck);
@@ -161,7 +161,7 @@ void Archduke(GameState &state, Admirer *aggressor, vector<Card> &deck) {
 	
 }
 
-void Adjudicator(vector<Card> &deck, Admirer *player) {
+void Adjudicator(std::vector<Card> &deck, Admirer *player) {
 	
 	std::cout << player->GetName() << " draw two cards (d): ";
 	
@@ -209,8 +209,8 @@ void Emperor(GameState &state, Admirer *aggressor) {
 	
 	std::cout << target->GetName() << " trade hands with " << aggressor->GetName() << std::endl;
 	
-	vector<Card> *instigator_hand = aggressor->GetHand();
-	vector<Card> *target_hand = target->GetHand();
+	std::vector<Card> *instigator_hand = aggressor->GetHand();
+	std::vector<Card> *target_hand = target->GetHand();
 	
 	swap(*instigator_hand, *target_hand);
 	
@@ -221,7 +221,7 @@ void Duchess(Admirer *player) {
 	std::cout << player->GetName() << " has played the Duchess!" << std::endl;
 }
 
-void GrandDuchess(Admirer *player, vector<Card> &deck) {
+void GrandDuchess(Admirer *player, std::vector<Card> &deck) {
 	std::cout << player->GetName() << " had the GrandDuchess!" << std::endl;
 	player->Out(deck);
 }

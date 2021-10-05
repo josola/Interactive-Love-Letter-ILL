@@ -8,7 +8,7 @@
 
 #include "converter.hpp"
 #include "admirer.hpp"
-#include "game_state.h"
+#include "game_state.hpp"
 
 Admirer* Converter::NumPlayer(int num, GameState& state) {
 	

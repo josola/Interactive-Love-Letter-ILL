@@ -1,5 +1,5 @@
 #include "input.h"
-#include "game_state.h"
+#include "game_state.hpp"
 #include "admirer.hpp"
 
 #include <cassert>

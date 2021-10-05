@@ -65,29 +65,29 @@ void Admirer::GainEmissaryBonus() {
 }
 
 void Admirer::Reset() {
-
+	
 	hand_.clear();
 	handmaid_ = false;
 	spy_ = false;
 	playing_ = true;
-
+	
 }
 
 void Admirer::Discard(const int choice, std::vector<Card> &deck) {
-
+	
 	for (Card &iCard : hand_) {
-
+		
 		if (iCard.GetValue() == choice) {
-
+			
 			deck.push_back(iCard);
 			RemoveCard(iCard.GetValue());
-
+			
 			break;
-
+			
 		}
-
+		
 	}
-
+	
 }
 
 void Admirer::DiscardHand(std::vector<Card> &deck) {
@@ -104,24 +104,24 @@ void Admirer::Winner(const bool state) {
 }
 
 void Admirer::RemoveCard(const int card) {
-
+	
 	for (size_t i = 0; i < hand_.size(); i++) {
-
+		
 		if (hand_.at(i).GetValue() == card) {
 			hand_.erase(hand_.begin() + i);
 			break;
 		}
-
+		
 	}
-
+	
 }
 
 void Admirer::Out(std::vector<Card> &deck) {
-
+	
 	this->DiscardHand(deck);
 	this->Reset();
 	this->playing_ = false;
-
+	
 }
 
 void Admirer::SetStarting(const bool state) {
@@ -129,22 +129,22 @@ void Admirer::SetStarting(const bool state) {
 }
 
 void Admirer::PrintHand() const {
-
+	
 	std::cout << std::endl << this->GetName() << " hand:" << std::endl;
-
+	
 	if (!hand_.empty()) {
-
+		
 		for (size_t i = 0; i < hand_.size(); i++) {
-
+			
 			if (i < hand_.size() - 1)
 				std::cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << ", ";
 			else
 				std::cout << hand_.at(i).GetValue() << '-' << hand_.at(i).GetName() << std::endl << std::endl;
-				
+			
 		}
-
+		
 	}
 	else
 		std::cout << "EMPTY\n";
-
+	
 }
