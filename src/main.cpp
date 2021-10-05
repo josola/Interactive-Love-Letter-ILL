@@ -1,7 +1,7 @@
 #include "deck.hpp"
 #include "admirer.hpp"
 #include "input.hpp"
-#include "reference.h"
+#include "reference.hpp"
 #include "game_state.hpp"
 #include "card_actions.hpp"
 

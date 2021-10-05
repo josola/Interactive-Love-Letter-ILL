@@ -14,13 +14,13 @@
 #include "deck.hpp"
 #include "card.hpp"
 
-Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference) {};
+Admirer::Admirer(const std::string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference) {};
 
 const bool Admirer::ProtectionStatus() const {
 	return handmaid_;
 }
 
-const string Admirer::GetName() const {
+const std::string Admirer::GetName() const {
 	return name_;
 }
 

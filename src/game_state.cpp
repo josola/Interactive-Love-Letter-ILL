@@ -5,7 +5,7 @@
  */
 
 #include "game_state.hpp"
-#include "reference.h"
+#include "reference.hpp"
 #include "admirer.hpp"
 
 #include <cassert>

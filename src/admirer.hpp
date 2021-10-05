@@ -8,7 +8,7 @@
 #define ADMIRER_HPP
 
 #include "converter.hpp"
-#include "reference.h"
+#include "reference.hpp"
 
 class Card;
 class Reference;
@@ -21,11 +21,11 @@ class Admirer {
 
 	public:
 
-		Admirer(const string name, const int value, const Reference &reference);
+		Admirer(const std::string name, const int value, const Reference &reference);
 
 		// getters
 		const bool ProtectionStatus() const;
-		const string GetName() const;
+		const std::string GetName() const;
 		std::vector<Card>* GetHand();
 		const bool Status() const;
 		const int GetValue() const;
@@ -53,7 +53,7 @@ class Admirer {
 	private:
 
 		// information
-		string name_ = "";
+		std::string name_ = "";
 		int value_ = 0;
 
 		// objects
