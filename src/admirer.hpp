@@ -7,7 +7,7 @@
 #ifndef ADMIRER_HPP
 #define ADMIRER_HPP
 
-#include "converter.h"
+#include "converter.hpp"
 #include "reference.h"
 
 class Card;
@@ -26,7 +26,7 @@ class Admirer {
 		// getters
 		const bool ProtectionStatus() const;
 		const string GetName() const;
-		vector<Card>* GetHand();
+		std::vector<Card>* GetHand();
 		const bool Status() const;
 		const int GetValue() const;
 		const int GetTokenCount() const;
@@ -39,12 +39,12 @@ class Admirer {
 		void GainEmissaryBonus();
 		void Reset();
 		void SetProtection(const bool state);
-		void Discard(const int choice, vector<Card> &deck);
-		void DiscardHand(vector<Card> &deck);
+		void Discard(const int choice, std::vector<Card> &deck);
+		void DiscardHand(std::vector<Card> &deck);
 		void Addtoken();
 		void Winner(const bool state);
 		void RemoveCard(const int card);
-		void Out(vector<Card> &deck);
+		void Out(std::vector<Card> &deck);
 		void SetStarting(const bool state);
 
 		// printer
@@ -58,7 +58,7 @@ class Admirer {
 
 		// objects
 		Reference reference_;
-		vector<Card> hand_;
+		std::vector<Card> hand_;
 		int token_count_ = 0;
 
 		// state
