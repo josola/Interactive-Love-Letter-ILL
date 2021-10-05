@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "admirer.hpp"
-#include "deck.h"
+#include "deck.hpp"
 #include "card.hpp"
 
 Admirer::Admirer(const string name, const int value, const Reference &reference) : name_(name), value_(value), reference_(reference) {};
@@ -24,7 +24,7 @@ const string Admirer::GetName() const {
 	return name_;
 }
 
-vector<Card>* Admirer::GetHand() {
+std::vector<Card>* Admirer::GetHand() {
 	return &hand_;
 }
 
@@ -73,7 +73,7 @@ void Admirer::Reset() {
 
 }
 
-void Admirer::Discard(const int choice, vector<Card> &deck) {
+void Admirer::Discard(const int choice, std::vector<Card> &deck) {
 
 	for (Card &iCard : hand_) {
 
@@ -90,7 +90,7 @@ void Admirer::Discard(const int choice, vector<Card> &deck) {
 
 }
 
-void Admirer::DiscardHand(vector<Card> &deck) {
+void Admirer::DiscardHand(std::vector<Card> &deck) {
 	for (Card &iCard : hand_)
 		Discard(iCard.GetValue(), deck);
 }
@@ -116,7 +116,7 @@ void Admirer::RemoveCard(const int card) {
 
 }
 
-void Admirer::Out(vector<Card> &deck) {
+void Admirer::Out(std::vector<Card> &deck) {
 
 	this->DiscardHand(deck);
 	this->Reset();

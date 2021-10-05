@@ -1,4 +1,4 @@
-#include "deck.h"
+#include "deck.hpp"
 #include "admirer.hpp"
 #include "input.h"
 #include "reference.h"

@@ -12,7 +12,7 @@
 #include "input.h"
 #include "game_state.h"
 #include "admirer.hpp"
-#include "deck.h"
+#include "deck.hpp"
 
 void Emissary(Admirer *player) {
 	assert(!player->HasEmissaryBonus());
