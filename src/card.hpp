@@ -8,7 +8,6 @@
 #define CARD_HPP
 
 #include <string>
-#include <vector>
 
 class Card {
 	

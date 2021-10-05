@@ -3,7 +3,7 @@
 #include "input.h"
 #include "reference.h"
 #include "game_state.h"
-#include "card_actions.h"
+#include "card_actions.hpp"
 
 #include <algorithm>
 #include <iostream>
