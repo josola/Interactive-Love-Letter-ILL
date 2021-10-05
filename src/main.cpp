@@ -1,8 +1,8 @@
 #include "deck.hpp"
 #include "admirer.hpp"
-#include "input.h"
+#include "input.hpp"
 #include "reference.h"
-#include "game_state.h"
+#include "game_state.hpp"
 #include "card_actions.hpp"
 
 #include <algorithm>

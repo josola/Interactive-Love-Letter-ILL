@@ -1,13 +1,8 @@
-//===- card_support.h - Supporting definitions for card actions -*- C++ -*-===//
-//
-// This software uses the MIT license.
-// See https://mit-license.org/ for license information.
-//
-//===----------------------------------------------------------------------===//
-///
-/// This file adds supporting functions for input operations.
-///
-//===----------------------------------------------------------------------===//
+/*
+ * Defines support capabilities for input functions.
+ * (c) 2019-2021 Jordan Sola. All rights reserved. (MIT License)
+ * Written by Jordan Sola 2019-2021
+ */
 
 class GameState;
 class Admirer;
