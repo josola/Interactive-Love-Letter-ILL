@@ -9,7 +9,7 @@
 #include <cassert>
 
 #include "card_actions.hpp"
-#include "input.h"
+#include "input.hpp"
 #include "game_state.hpp"
 #include "admirer.hpp"
 #include "deck.hpp"

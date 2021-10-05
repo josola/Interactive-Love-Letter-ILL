@@ -1,15 +1,16 @@
-#include "reference.h"
+/*
+ * Defines the reference card.
+ * (c) 2019-2021 Jordan Sola. All rights reserved. (MIT License)
+ * Written by Jordan Sola 2019-2021
+ */
+
 #include <iostream>
 
-using std::cout;
-using std::endl;
+#include "reference.hpp"
 
 Reference::Reference() : Card{"REFERENCE", -1} {};
 
-void Reference::Print()
-{
-  for (string i : reference)
-  {
-    cout << i << endl;
-  }
+void Reference::Print() {
+	for (std::string i : reference)
+		std::cout << i << std::endl;
 }
