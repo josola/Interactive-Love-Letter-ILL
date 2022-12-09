@@ -33,3 +33,4 @@
 
 # Other files
 .DS_Store
+build/
