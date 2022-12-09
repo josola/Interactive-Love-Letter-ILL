@@ -1,9 +1,39 @@
 # Missive 🖥️
 
-Missive is an open source, text-based, single-admirer, card game based on the popular game Love Letter. You play as an admirer of the Emperor's daughter The Grand Duchess of Mannheim. But you aren't the only one fighting for her father's seal of approval, and her heart. Other admirers are vying for her attention alongside you. This is unacceptable, you must take action. Knock out your opponents by utilizing the specialized skills of your entourage: Emissary, Defender, Cleric, Lord, Damsel, Adjudicator, Archduke, Emperor, Duchess, and The Grand Duchess herself. Knock out the other admirers to be the last one standing and you shall win the heart of the Grand Duchess!
+![Issues](https://img.shields.io/github/issues/josola/missive?style=for-the-badge)
+![License](https://img.shields.io/github/license/josola/missive?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/josola/missive?style=for-the-badge)
 
-- Contributions are always welcome. Be sure to check out the [Contributing Guide]() for ways to help out.
-  
-- This project has an [API Reference](). Check it out to get in-depth information on classes and methods.
-  
-- Before contributing, be sure to check out the [Style Guide](). It contains standards that should be maintained throughout the project.
+Missive is an open source, text-based, card game based on the popular game
+Love Letter. Missive uses the standard output to display the game state and the
+standard input to receive user input.
+
+## Installation
+
+Missive runs on Make and CMake. To install Missive, run the following commands:
+
+```bash
+git clone (this repository)
+cd missive
+make
+```
+
+## Usage
+
+To run Missive, run the following command:
+
+```bash
+./build/missive
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to
+discuss what you would like to change.
+
+## Game Rules
+
+The rules of Missive are very similar to the rules of Love Letter. The main
+difference is that Missive has had the names of the cards changed to be more
+appropriate for the game. The rules for Love Letter can be found here
+👉 [The Rules of Love Letter (Ultra Board Games)](https://www.ultraboardgames.com/love-letter/game-rules.php).
