@@ -35,5 +35,5 @@ discuss what you would like to change.
 
 The rules of Missive are very similar to the rules of Love Letter. The main
 difference is that Missive has had the names of the cards changed to be more
-appropriate for the game. The rules for Love Letter can be found here
-👉 [The Rules of Love Letter (Ultra Board Games)](https://www.ultraboardgames.com/love-letter/game-rules.php).
+appropriate for the game. The rules for Love Letter can be found here:
+[The Rules of Love Letter (Ultra Board Games)](https://www.ultraboardgames.com/love-letter/game-rules.php).
